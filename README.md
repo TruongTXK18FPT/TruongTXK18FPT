@@ -120,8 +120,8 @@
     <td width="50%">
       <h3 align="center">🌌 SkillVerse</h3>
       <p align="center">
-        A full-stack platform focused on building a structured learning and skill-development experience.
-        The project includes a backend system and a prototype interface for exploring core product ideas.
+        A full-stack learning platform designed to support structured skill development,
+        course exploration, and user-centered learning experiences.
       </p>
       <p align="center">
         <img src="https://img.shields.io/badge/Backend-111827?style=for-the-badge" />
@@ -164,8 +164,8 @@
     <td width="50%">
       <h3 align="center">🐟 KOI Care System</h3>
       <p align="center">
-        A home-based koi fish care management system designed to support pond tracking,
-        care activities, and daily management for koi owners.
+        A home-based koi fish care management system designed to help users track pond information,
+        manage care activities, and organize koi health-related records.
       </p>
       <p align="center">
         <img src="https://img.shields.io/badge/Management_System-111827?style=for-the-badge" />
@@ -182,8 +182,8 @@
     <td width="50%">
       <h3 align="center">📚 MyELTS</h3>
       <p align="center">
-        An English learning project inspired by IELTS practice, focusing on improving learning flow,
-        study organization, and user-friendly practice experience.
+        An English learning project inspired by IELTS practice, focusing on study organization,
+        learning flow, and a friendly practice experience for learners.
       </p>
       <p align="center">
         <img src="https://img.shields.io/badge/English_Learning-2563eb?style=for-the-badge" />
@@ -202,8 +202,8 @@
     <td width="50%">
       <h3 align="center">🏛️ LichSuDangLab</h3>
       <p align="center">
-        An educational lab project for learning and presenting historical knowledge in a more accessible,
-        structured, and interactive way.
+        An educational lab project for presenting historical knowledge in a clearer,
+        more structured, and more accessible digital learning format.
       </p>
       <p align="center">
         <img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
@@ -220,8 +220,8 @@
     <td width="50%">
       <h3 align="center">💡 Triet Hoc 4.0</h3>
       <p align="center">
-        A modern learning project that brings philosophy topics into a digital experience,
-        making abstract concepts easier to explore and understand.
+        A digital learning project that transforms philosophy topics into a modern,
+        easier-to-explore experience for understanding abstract concepts.
       </p>
       <p align="center">
         <img src="https://img.shields.io/badge/Philosophy-7c3aed?style=for-the-badge" />
