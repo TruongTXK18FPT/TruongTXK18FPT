@@ -116,125 +116,122 @@
 <div align="center">
 
 <table>
-  <tr>
-    <td width="50%">
-      <h3 align="center">🌌 SkillVerse</h3>
-      <p align="center">
-        A full-stack learning platform designed to support structured skill development,
-        course exploration, and user-centered learning experiences.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Backend-111827?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Prototype-7c3aed?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/API-2563eb?style=for-the-badge" />
-      </p>
-      <p align="center">
-        <a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
-          <img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-        <a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
-          <img src="https://img.shields.io/badge/Prototype_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-      </p>
-    </td>
+<tr>
+<td width="50%" align="center">
 
-    <td width="50%">
-      <h3 align="center">🧠 MSS301</h3>
-      <p align="center">
-        A visual math learning web application that uses mind maps to organize concepts,
-        formulas, and learning paths, helping students understand mathematics more clearly.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Math_Learning-0f766e?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Mind_Map-7c3aed?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Full_Stack-2563eb?style=for-the-badge" />
-      </p>
-      <p align="center">
-        <a href="https://github.com/TruongTXK18FPT/MSS301-BE">
-          <img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-        <a href="https://github.com/TruongTXK18FPT/MSS301-FE">
-          <img src="https://img.shields.io/badge/Frontend_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-      </p>
-    </td>
-  </tr>
+### 🌌 SkillVerse
 
-  <tr>
-    <td width="50%">
-      <h3 align="center">🐟 KOI Care System</h3>
-      <p align="center">
-        A home-based koi fish care management system designed to help users track pond information,
-        manage care activities, and organize koi health-related records.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Management_System-111827?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Home_Care-0f766e?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/SWP391-2563eb?style=for-the-badge" />
-      </p>
-      <p align="center">
-        <a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
-          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-      </p>
-    </td>
+A full-stack learning platform designed to support structured skill development, course exploration, and user-centered learning experiences.
 
-    <td width="50%">
-      <h3 align="center">📚 MyELTS</h3>
-      <p align="center">
-        An English learning project inspired by IELTS practice, focusing on study organization,
-        learning flow, and a friendly practice experience for learners.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/English_Learning-2563eb?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/IELTS_Practice-7c3aed?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
-      </p>
-      <p align="center">
-        <a href="https://github.com/TruongTXK18FPT/MyELTS">
-          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-      </p>
-    </td>
-  </tr>
+<p>
+<img src="https://img.shields.io/badge/Backend-111827?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Prototype-7c3aed?style=for-the-badge" />
+<img src="https://img.shields.io/badge/API-2563eb?style=for-the-badge" />
+</p>
 
-  <tr>
-    <td width="50%">
-      <h3 align="center">🏛️ LichSuDangLab</h3>
-      <p align="center">
-        An educational lab project for presenting historical knowledge in a clearer,
-        more structured, and more accessible digital learning format.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/History-92400e?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Lab_Project-2563eb?style=for-the-badge" />
-      </p>
-      <p align="center">
-        <a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
-          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-      </p>
-    </td>
+<a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
+<img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+<a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
+<img src="https://img.shields.io/badge/Prototype_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
+</a>
 
-    <td width="50%">
-      <h3 align="center">💡 Triet Hoc 4.0</h3>
-      <p align="center">
-        A digital learning project that transforms philosophy topics into a modern,
-        easier-to-explore experience for understanding abstract concepts.
-      </p>
-      <p align="center">
-        <img src="https://img.shields.io/badge/Philosophy-7c3aed?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/Digital_Learning-2563eb?style=for-the-badge" />
-        <img src="https://img.shields.io/badge/4.0-111827?style=for-the-badge" />
-      </p>
-      <p align="center">
-        <a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
-          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-        </a>
-      </p>
-    </td>
-  </tr>
+</td>
+<td width="50%" align="center">
+
+### 🧠 MathMind
+
+A visual math learning web application that uses mind maps to organize concepts, formulas, and learning paths, helping students understand mathematics more clearly.
+
+<p>
+<img src="https://img.shields.io/badge/Math_Learning-0f766e?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Mind_Map-7c3aed?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Full_Stack-2563eb?style=for-the-badge" />
+</p>
+
+<a href="https://github.com/TruongTXK18FPT/MSS301-BE">
+<img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+<a href="https://github.com/TruongTXK18FPT/MSS301-FE">
+<img src="https://img.shields.io/badge/Frontend_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+
+</td>
+</tr>
+
+<tr>
+<td width="50%" align="center">
+
+### 🐟 KOI Care System
+
+A home-based koi fish care management system that helps users manage ponds, track koi information, monitor care activities, and organize health-related records.
+
+<p>
+<img src="https://img.shields.io/badge/Management_System-111827?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Home_Care-0f766e?style=for-the-badge" />
+<img src="https://img.shields.io/badge/SWP391-2563eb?style=for-the-badge" />
+</p>
+
+<a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
+<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+
+</td>
+<td width="50%" align="center">
+
+### 📚 MyELTS
+
+An English learning project inspired by IELTS practice, focused on study organization, learning flow, and a friendly practice experience for learners.
+
+<p>
+<img src="https://img.shields.io/badge/English_Learning-2563eb?style=for-the-badge" />
+<img src="https://img.shields.io/badge/IELTS_Practice-7c3aed?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
+</p>
+
+<a href="https://github.com/TruongTXK18FPT/MyELTS">
+<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+
+</td>
+</tr>
+
+<tr>
+<td width="50%" align="center">
+
+### 🏛️ LichSuDangLab
+
+An educational lab project for presenting historical knowledge in a clearer, more structured, and more accessible digital learning format.
+
+<p>
+<img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
+<img src="https://img.shields.io/badge/History-92400e?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Lab_Project-2563eb?style=for-the-badge" />
+</p>
+
+<a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
+<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+
+</td>
+<td width="50%" align="center">
+
+### 💡 Triet Hoc 4.0
+
+A digital learning project that transforms philosophy topics into a modern and easier-to-explore experience for understanding abstract concepts.
+
+<p>
+<img src="https://img.shields.io/badge/Philosophy-7c3aed?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Digital_Learning-2563eb?style=for-the-badge" />
+<img src="https://img.shields.io/badge/4.0-111827?style=for-the-badge" />
+</p>
+
+<a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
+<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+</a>
+
+</td>
+</tr>
 </table>
 
 </div>
