@@ -117,51 +117,122 @@
 
 <table>
   <tr>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=SkillVerse_BackEnd&theme=dracula&hide_border=false" width="420" />
-      </a>
+    <td width="50%">
+      <h3 align="center">🌌 SkillVerse</h3>
+      <p align="center">
+        A full-stack platform focused on building a structured learning and skill-development experience.
+        The project includes a backend system and a prototype interface for exploring core product ideas.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Backend-111827?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Prototype-7c3aed?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/API-2563eb?style=for-the-badge" />
+      </p>
+      <p align="center">
+        <a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
+          <img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+        <a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
+          <img src="https://img.shields.io/badge/Prototype_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
     </td>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=skillverse-prototype&theme=dracula&hide_border=false" width="420" />
-      </a>
+
+    <td width="50%">
+      <h3 align="center">🧠 MSS301</h3>
+      <p align="center">
+        A visual math learning web application that uses mind maps to organize concepts,
+        formulas, and learning paths, helping students understand mathematics more clearly.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Math_Learning-0f766e?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Mind_Map-7c3aed?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Full_Stack-2563eb?style=for-the-badge" />
+      </p>
+      <p align="center">
+        <a href="https://github.com/TruongTXK18FPT/MSS301-BE">
+          <img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+        <a href="https://github.com/TruongTXK18FPT/MSS301-FE">
+          <img src="https://img.shields.io/badge/Frontend_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
     </td>
   </tr>
+
   <tr>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/MyELTS">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MyELTS&theme=dracula&hide_border=false" width="420" />
-      </a>
+    <td width="50%">
+      <h3 align="center">🐟 KOI Care System</h3>
+      <p align="center">
+        A home-based koi fish care management system designed to support pond tracking,
+        care activities, and daily management for koi owners.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Management_System-111827?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Home_Care-0f766e?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/SWP391-2563eb?style=for-the-badge" />
+      </p>
+      <p align="center">
+        <a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
+          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
     </td>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=LichSuDangLab&theme=dracula&hide_border=false" width="420" />
-      </a>
+
+    <td width="50%">
+      <h3 align="center">📚 MyELTS</h3>
+      <p align="center">
+        An English learning project inspired by IELTS practice, focusing on improving learning flow,
+        study organization, and user-friendly practice experience.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/English_Learning-2563eb?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/IELTS_Practice-7c3aed?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
+      </p>
+      <p align="center">
+        <a href="https://github.com/TruongTXK18FPT/MyELTS">
+          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
     </td>
   </tr>
+
   <tr>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=Triet-hoc-4.0&theme=dracula&hide_border=false" width="420" />
-      </a>
+    <td width="50%">
+      <h3 align="center">🏛️ LichSuDangLab</h3>
+      <p align="center">
+        An educational lab project for learning and presenting historical knowledge in a more accessible,
+        structured, and interactive way.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/History-92400e?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Lab_Project-2563eb?style=for-the-badge" />
+      </p>
+      <p align="center">
+        <a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
+          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
     </td>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=KOI-CARE-SYSTEM-AT-HOME-SWP391&theme=dracula&hide_border=false" width="420" />
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/MSS301-BE">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-BE&theme=dracula&hide_border=false" width="420" />
-      </a>
-    </td>
-    <td>
-      <a href="https://github.com/TruongTXK18FPT/MSS301-FE">
-        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-FE&theme=dracula&hide_border=false" width="420" />
-      </a>
+
+    <td width="50%">
+      <h3 align="center">💡 Triet Hoc 4.0</h3>
+      <p align="center">
+        A modern learning project that brings philosophy topics into a digital experience,
+        making abstract concepts easier to explore and understand.
+      </p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/Philosophy-7c3aed?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/Digital_Learning-2563eb?style=for-the-badge" />
+        <img src="https://img.shields.io/badge/4.0-111827?style=for-the-badge" />
+      </p>
+      <p align="center">
+        <a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
+          <img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
+      </p>
     </td>
   </tr>
 </table>
