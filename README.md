@@ -1,8 +1,47 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e293b,100:7c3aed&height=180&section=header&text=TruongTX&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Full-Stack%20Engineer%20%7C%20Backend-Heavy%20Developer&descAlignY=55&descSize=16" />
+  <!-- Galaxy Header -->
+  <img 
+    width="100%" 
+    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,35:1e1b4b,70:581c87,100:7c3aed&height=220&section=header&text=TruongTX&fontSize=54&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=Full-Stack%20Engineer%20%E2%80%A2%20Backend-Heavy%20Developer%20%E2%80%A2%20System%20Design&descAlignY=58&descSize=17" 
+  />
 
-<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=2500&pause=800&color=A78BFA&center=true&vCenter=true&width=700&lines=Full-Stack+Engineer;Java+Spring+Boot+%7C+Next.js+%7C+React;Building+scalable+backend+systems;System+Design+%26+Performance+Optimization" />
+  <!-- Typing Animation -->
+  <img 
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2500&pause=700&color=C084FC&center=true&vCenter=true&width=850&lines=%F0%9F%9A%80+Full-Stack+Engineer;%E2%9A%A1+Java+Spring+Boot+%7C+Next.js+%7C+React;%F0%9F%8C%8C+Building+Scalable+Backend+Systems;%F0%9F%94%A5+System+Design+%26+Performance+Optimization;%E2%9C%A8+Clean+Code+%7C+High+Performance+%7C+Cloud-Ready" 
+  />
+
+  <br />
+
+  <!-- Neon Divider -->
+  <img 
+    src="https://user-images.githubusercontent.com/74038190/216656971-9a208450-7c4f-4f3a-85b7-7f0e7be3a0b1.gif" 
+    width="420" 
+    alt="galaxy divider" 
+  />
+
+  <br />
+
+  <!-- Badges -->
+  <p>
+    <img src="https://img.shields.io/badge/Backend-Java%20Spring%20Boot-7c3aed?style=for-the-badge&logo=springboot&logoColor=white" />
+    <img src="https://img.shields.io/badge/Frontend-Next.js%20%7C%20React-a855f7?style=for-the-badge&logo=nextdotjs&logoColor=white" />
+    <img src="https://img.shields.io/badge/Database-PostgreSQL%20%7C%20Redis-6366f1?style=for-the-badge&logo=postgresql&logoColor=white" />
+    <img src="https://img.shields.io/badge/Cloud-Docker%20%7C%20AWS-0f172a?style=for-the-badge&logo=docker&logoColor=white" />
+  </p>
+
+  <!-- Cosmic Quote -->
+  <p>
+    <img 
+      src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=16&duration=3500&pause=1000&color=DDD6FE&center=true&vCenter=true&width=750&lines=Code+like+a+craftsman%2C+scale+like+an+architect.;Turning+ideas+into+fast%2C+reliable%2C+production-ready+systems." 
+    />
+  </p>
+
+  <!-- Footer Wave -->
+  <img 
+    width="100%" 
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:020617,50:312e81,100:7c3aed&height=2&section=footer" 
+  />
 
 </div>
 
