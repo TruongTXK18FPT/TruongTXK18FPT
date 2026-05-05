@@ -1,8 +1,8 @@
 # 💫 TruongTX
 
-<h3 align="center">Full-Stack Engineer</h3>
+<div align="center">
 
-<p align="center">
+### Full-Stack Engineer
 
 💼 Former Frontend Developer (Vue.js) at **FPT Software**  
 ☕ Building backend skills with **Java Spring Boot**  
@@ -15,6 +15,8 @@
 
 💬 Ask me about **Vue.js, Spring Boot, Next.js, ReactJS, REST APIs**  
 ⚡ Fun fact: *Next.js for speed ⚡ — Java for scale 🚀*
+
+</div>
 
 ## 🌐 Socials:
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/tung.tung.tung.sahur110524) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/tran-xuan-truong-ab00b7317) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:tranxuantin1234@gmail.com) 
