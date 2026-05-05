@@ -27,7 +27,7 @@
     <img src="https://img.shields.io/badge/Backend-Java%20Spring%20Boot-7c3aed?style=for-the-badge&logo=springboot&logoColor=white" />
     <img src="https://img.shields.io/badge/Frontend-Next.js%20%7C%20React-a855f7?style=for-the-badge&logo=nextdotjs&logoColor=white" />
     <img src="https://img.shields.io/badge/Database-PostgreSQL%20%7C%20Redis-6366f1?style=for-the-badge&logo=postgresql&logoColor=white" />
-    <img src="https://img.shields.io/badge/Cloud-Docker%20%7C%20AWS-0f172a?style=for-the-badge&logo=docker&logoColor=white" />
+    <img src="https://img.shields.io/badge/Cloud-Docker%20%7C%20VPS-0f172a?style=for-the-badge&logo=docker&logoColor=white" />
   </p>
 
   <!-- Cosmic Quote -->
