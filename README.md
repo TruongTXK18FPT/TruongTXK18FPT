@@ -1,4 +1,4 @@
-# 💫 About Me:
+# 💫 TruongTX:
 👋 Hi there, I'm Truong<br><br>💼 I'm currently working on full-stack development and gaining hands-on experience with enterprise workflows at FPT Software.<br><br>☕ Java Spring Boot is my main backend stack, focused on building scalable and maintainable systems.<br><br>⚡ Recently, I’ve been using Next.js more often to build modern web applications, while I prefer Java for large-scale, enterprise-level systems.<br><br>🤝 I'm looking to collaborate on backend-heavy or full-stack projects, especially those involving microservices, RESTful APIs, or AI-powered features.<br><br>🧩 I'm looking for help with system design, microservices architecture, and performance optimization in production environments.<br><br>🎓 I'm currently learning Software Engineering at FPT University, focusing on real-world development and system architecture.<br><br>💬 Ask me about Spring Boot, Next.js, REST APIs, or building scalable full-stack applications.<br><br>⚡ Fun fact: I often choose the right tool for the job—Next.js for speed and flexibility, Java for robustness and scale.<br>
 
 
