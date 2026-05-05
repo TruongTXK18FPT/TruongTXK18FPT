@@ -45,8 +45,6 @@
 
 </div>
 
-# 💫 TruongTX
-
 <div align="center">
 
 
