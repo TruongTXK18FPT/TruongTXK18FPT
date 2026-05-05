@@ -1,13 +1,32 @@
 # 💫 TruongTX
-Hi, I’m Truong 👋
-💼 Frontend Developer (Vue.js) at FPT Software, working with enterprise workflows
-☕ Backend: Java Spring Boot (learning & building scalable systems)
-⚡ Also using Next.js for modern web applications
-🤝 Open to collaborate on backend-heavy & full-stack projects (microservices, APIs, AI)
-🧩 Interested in system design & performance optimization
-🎓 Software Engineering student at FPT University
-💬 Ask me about Vue.js, Spring Boot, Next.js, REST APIs
-⚡ Fun fact: I use Next.js for speed, Java for scale
+
+<h3 align="center">Frontend Developer (Vue.js) | Aspiring Full-Stack Engineer</h3>
+
+<p align="center">
+  <a href="https://github.com/TruongTXK18FPT">
+    <img src="https://img.shields.io/badge/GitHub-TruongTXK18FPT-181717?style=flat&logo=github" />
+  </a>
+  <a href="https://linkedin.com/in/tran-xuan-truong-ab00b7317">
+    <img src="https://img.shields.io/badge/LinkedIn-Truong-blue?style=flat&logo=linkedin" />
+  </a>
+  <a href="mailto:tranxuantin1234@gmail.com">
+    <img src="https://img.shields.io/badge/Email-Contact-red?style=flat&logo=gmail" />
+  </a>
+</p>
+
+---
+
+💼 Former Frontend Developer (Vue.js) at **FPT Software**  
+☕ Building backend skills with **Java Spring Boot**  
+⚡ Developing modern apps with **Next.js**  
+
+🤝 Open to **full-stack & backend-heavy projects** (Microservices, APIs, AI)  
+🧩 Focused on **System Design & Performance Optimization**  
+
+🎓 Software Engineering @ FPT University  
+
+💬 Ask me about **Vue.js, Spring Boot, Next.js, REST APIs**  
+⚡ Fun fact: *Next.js for speed ⚡ — Java for scale 🚀*
 
 ## 🌐 Socials:
 [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://facebook.com/tung.tung.tung.sahur110524) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/tran-xuan-truong-ab00b7317) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:tranxuantin1234@gmail.com) 
