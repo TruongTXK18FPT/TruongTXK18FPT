@@ -3,18 +3,6 @@
 <h3 align="center">Full-Stack Engineer</h3>
 
 <p align="center">
-  <a href="https://github.com/TruongTXK18FPT">
-    <img src="https://img.shields.io/badge/GitHub-TruongTXK18FPT-181717?style=flat&logo=github" />
-  </a>
-  <a href="https://linkedin.com/in/tran-xuan-truong-ab00b7317">
-    <img src="https://img.shields.io/badge/LinkedIn-Truong-blue?style=flat&logo=linkedin" />
-  </a>
-  <a href="mailto:tranxuantin1234@gmail.com">
-    <img src="https://img.shields.io/badge/Email-Contact-red?style=flat&logo=gmail" />
-  </a>
-</p>
-
----
 
 💼 Former Frontend Developer (Vue.js) at **FPT Software**  
 ☕ Building backend skills with **Java Spring Boot**  
