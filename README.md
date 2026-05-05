@@ -1,6 +1,6 @@
 # 💫 TruongTX
 
-<h3 align="center">Frontend Developer (Vue.js) | Aspiring Full-Stack Engineer</h3>
+<h3 align="center">Full-Stack Engineer</h3>
 
 <p align="center">
   <a href="https://github.com/TruongTXK18FPT">
