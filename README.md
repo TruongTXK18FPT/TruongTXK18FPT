@@ -13,7 +13,7 @@
 
 🎓 Software Engineering @ FPT University  
 
-💬 Ask me about **Vue.js, Spring Boot, Next.js, REST APIs**  
+💬 Ask me about **Vue.js, Spring Boot, Next.js, ReactJS, REST APIs**  
 ⚡ Fun fact: *Next.js for speed ⚡ — Java for scale 🚀*
 
 ## 🌐 Socials:
