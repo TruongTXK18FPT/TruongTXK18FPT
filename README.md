@@ -10,7 +10,6 @@
 
 <div align="center">
 
-### Full-Stack Engineer
 
 💼 Former Frontend Developer (Vue.js) at **FPT Software**  
 ☕ Building backend skills with **Java Spring Boot**  
@@ -112,6 +111,44 @@
 ![](https://streak-stats.demolab.com/?user=TruongTXK18FPT&theme=dracula&hide_border=false)<br/>
 ![](https://github-readme-stats.shion.dev/api/top-langs/?username=TruongTXK18FPT&theme=dracula&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
 
+## 🚀 Featured Projects
+
+<div align="center">
+
+<a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=SkillVerse_BackEnd&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=skillverse-prototype&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/MyELTS">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MyELTS&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=LichSuDangLab&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=Triet-hoc-4.0&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=KOI-CARE-SYSTEM-AT-HOME-SWP391&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/MSS301-BE">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-BE&theme=dracula&hide_border=false" />
+</a>
+
+<a href="https://github.com/TruongTXK18FPT/MSS301-FE">
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-FE&theme=dracula&hide_border=false" />
+</a>
+
+</div>
+
 ## 🏆 GitHub Trophies
 ![](https://github-profile-trophy.vercel.app/?username=TruongTXK18FPT&theme=dracula&no-frame=false&no-bg=true&margin-w=4)
 ## Commit Snake
@@ -136,4 +173,5 @@
 ---
 [![](https://komarev.com/ghpvc/?username=TruongTXK18FPT&icon=0&color=0)](https://visitcount.itsvg.in)
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,50:1e293b,100:0f172a&height=120&section=footer" />
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
