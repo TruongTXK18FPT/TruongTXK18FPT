@@ -297,5 +297,46 @@ A digital learning project that transforms philosophy topics into a modern and e
 ---
 [![](https://komarev.com/ghpvc/?username=TruongTXK18FPT&icon=0&color=0)](https://visitcount.itsvg.in)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,50:1e293b,100:0f172a&height=120&section=footer" />
+<div align="center">
+
+  <!-- Cosmic Divider -->
+  <img 
+    src="https://user-images.githubusercontent.com/74038190/216656971-9a208450-7c4f-4f3a-85b7-7f0e7be3a0b1.gif" 
+    width="500" 
+    alt="cosmic divider" 
+  />
+
+  <br />
+
+  <!-- Footer Typing Quote -->
+  <img 
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=3000&pause=1000&color=C084FC&center=true&vCenter=true&width=800&lines=Thanks+for+visiting+my+profile+%F0%9F%8C%8C;Keep+building.+Keep+learning.+Keep+scaling+%F0%9F%9A%80;See+you+somewhere+in+the+code+universe+%E2%9C%A8" 
+  />
+
+  <br />
+  <br />
+
+  <!-- Social / Contact Badges -->
+  <p>
+    <img src="https://img.shields.io/badge/GitHub-TruongTX-0f172a?style=for-the-badge&logo=github&logoColor=white" />
+    <img src="https://img.shields.io/badge/Portfolio-Coming%20Soon-7c3aed?style=for-the-badge&logo=vercel&logoColor=white" />
+    <img src="https://img.shields.io/badge/Focus-Backend%20Systems-a855f7?style=for-the-badge&logo=apachekafka&logoColor=white" />
+  </p>
+
+  <!-- Visitor Counter -->
+  <img 
+    src="https://komarev.com/ghpvc/?username=TruongTX&style=for-the-badge&color=7c3aed&label=PROFILE+VIEWS" 
+    alt="profile views" 
+  />
+
+  <br />
+  <br />
+
+  <!-- Galaxy Footer Wave -->
+  <img 
+    width="100%" 
+    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,25:1e1b4b,50:4c1d95,75:7c3aed,100:c084fc&height=160&section=footer&animation=twinkling" 
+  />
+
+</div>
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
