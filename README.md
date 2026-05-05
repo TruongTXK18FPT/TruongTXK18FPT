@@ -29,6 +29,7 @@
     src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-contribution-grid-snake.svg"
   />
 </picture>
+
 ### ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
