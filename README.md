@@ -115,37 +115,56 @@
 
 <div align="center">
 
-<a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=SkillVerse_BackEnd&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=skillverse-prototype&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/MyELTS">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MyELTS&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=LichSuDangLab&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=Triet-hoc-4.0&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=KOI-CARE-SYSTEM-AT-HOME-SWP391&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/MSS301-BE">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-BE&theme=dracula&hide_border=false" />
-</a>
-
-<a href="https://github.com/TruongTXK18FPT/MSS301-FE">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-FE&theme=dracula&hide_border=false" />
-</a>
+<table>
+  <tr>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=SkillVerse_BackEnd&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=skillverse-prototype&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/MyELTS">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MyELTS&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=LichSuDangLab&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=Triet-hoc-4.0&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=KOI-CARE-SYSTEM-AT-HOME-SWP391&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/MSS301-BE">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-BE&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/TruongTXK18FPT/MSS301-FE">
+        <img src="https://github-readme-stats.vercel.app/api/pin/?username=TruongTXK18FPT&repo=MSS301-FE&theme=dracula&hide_border=false" width="420" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 </div>
 
