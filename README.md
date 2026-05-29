@@ -1,281 +1,338 @@
 <div align="center">
 
-  <!-- Galaxy Header -->
-  <img 
-    width="100%" 
-    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,35:1e1b4b,70:581c87,100:7c3aed&height=220&section=header&text=TruongTX&fontSize=54&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=Full-Stack%20Engineer%20%E2%80%A2%20Backend-Heavy%20Developer%20%E2%80%A2%20System%20Design&descAlignY=58&descSize=17" 
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,22:0f172a,48:312e81,72:7c3aed,100:06b6d4&height=225&section=header&text=TruongTX&fontSize=62&fontColor=E0F2FE&animation=twinkling&fontAlignY=34&desc=Full-Stack%20Engineer%20%7C%20Backend-Heavy%20Builder%20%7C%20Galaxy%20Tech%20Mode&descAlignY=56&descSize=16"
+    alt="TruongTX galaxy neon header"
   />
 
-  <!-- Typing Animation -->
-  <img 
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=24&duration=2500&pause=700&color=C084FC&center=true&vCenter=true&width=850&lines=%F0%9F%9A%80+Full-Stack+Engineer;%E2%9A%A1+Java+Spring+Boot+%7C+Next.js+%7C+React;%F0%9F%8C%8C+Building+Scalable+Backend+Systems;%F0%9F%94%A5+System+Design+%26+Performance+Optimization;%E2%9C%A8+Clean+Code+%7C+High+Performance+%7C+Cloud-Ready" 
+  <h1>TruongTX | Full-Stack Engineer | Backend-Heavy Builder</h1>
+
+  <img
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=23&duration=2600&pause=700&color=00E5FF&center=true&vCenter=true&width=900&lines=Java+Spring+Boot+for+scale;Next.js+and+React+for+speed;System+Design+%7C+APIs+%7C+Performance;Building+SkillVerse+and+learning-tech+systems"
+    alt="Typing SVG with TruongTX engineering focus"
   />
 
-  <br />
-
-  <!-- Neon Divider -->
-  <img 
-    src="https://user-images.githubusercontent.com/74038190/216656971-9a208450-7c4f-4f3a-85b7-7f0e7be3a0b1.gif" 
-    width="420" 
-    alt="galaxy divider" 
-  />
-
-  <br />
-
-  <!-- Badges -->
   <p>
-    <img src="https://img.shields.io/badge/Backend-Java%20Spring%20Boot-7c3aed?style=for-the-badge&logo=springboot&logoColor=white" />
-    <img src="https://img.shields.io/badge/Frontend-Next.js%20%7C%20React-a855f7?style=for-the-badge&logo=nextdotjs&logoColor=white" />
-    <img src="https://img.shields.io/badge/Database-PostgreSQL%20%7C%20Redis-6366f1?style=for-the-badge&logo=postgresql&logoColor=white" />
-    <img src="https://img.shields.io/badge/Cloud-Docker%20%7C%20VPS-0f172a?style=for-the-badge&logo=docker&logoColor=white" />
+    <img src="https://img.shields.io/badge/Focus-Backend%20Systems-00E5FF?style=for-the-badge&logo=apachekafka&logoColor=0D1117" alt="Backend Systems badge" />
+    <img src="https://img.shields.io/badge/Core-Java%20Spring%20Boot-7C3AED?style=for-the-badge&logo=springboot&logoColor=white" alt="Java Spring Boot badge" />
+    <img src="https://img.shields.io/badge/UI-Next.js%20%7C%20React-FF2BD6?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js React badge" />
+    <img src="https://img.shields.io/badge/Data-PostgreSQL%20%7C%20Redis-22C55E?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL Redis badge" />
   </p>
 
-  <!-- Cosmic Quote -->
   <p>
-    <img 
-      src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=16&duration=3500&pause=1000&color=DDD6FE&center=true&vCenter=true&width=750&lines=Code+like+a+craftsman%2C+scale+like+an+architect.;Turning+ideas+into+fast%2C+reliable%2C+production-ready+systems." 
-    />
+    <a href="https://github.com/TruongTXK18FPT">
+      <img src="https://komarev.com/ghpvc/?username=TruongTXK18FPT&style=for-the-badge&color=7c3aed&label=PROFILE+VIEWS" alt="Profile views" />
+    </a>
+    <img src="https://img.shields.io/badge/Open%20To-Full--Stack%20%26%20Backend--Heavy%20Projects-06B6D4?style=for-the-badge&logo=github&logoColor=0D1117" alt="Open to projects badge" />
   </p>
 
-  <!-- Footer Wave -->
-  <img 
-    width="100%" 
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:020617,50:312e81,100:7c3aed&height=2&section=footer" 
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:00E5FF,50:FF2BD6,100:7C3AED&height=3&section=header"
+    alt="Neon divider"
   />
 
 </div>
 
+## About Orbit
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Signal</strong>
+      <br />
+      Backend-heavy full-stack engineer building APIs, learning platforms, and production-ready web systems.
+    </td>
+    <td width="50%" valign="top">
+      <strong>Current stack</strong>
+      <br />
+      Java Spring Boot, Next.js, React, PostgreSQL, Redis, Docker, and cloud-ready deployment flows.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Experience</strong>
+      <br />
+      Former Frontend Developer (Vue.js) at <strong>FPT Software</strong>, now expanding deeper into backend architecture.
+    </td>
+    <td width="50%" valign="top">
+      <strong>Education</strong>
+      <br />
+      Software Engineering student at <strong>FPT University</strong>, focused on system design and performance.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Ask me about</strong>
+      <br />
+      Vue.js, Spring Boot, Next.js, ReactJS, REST APIs, database design, and clean service boundaries.
+    </td>
+    <td width="50%" valign="top">
+      <strong>Build philosophy</strong>
+      <br />
+      Code like a craftsman, scale like an architect, and keep the user experience fast enough to feel invisible.
+    </td>
+  </tr>
+</table>
+
 <div align="center">
 
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:7C3AED,50:06B6D4,100:22C55E&height=2&section=header"
+    alt="Neon divider"
+  />
 
-💼 Former Frontend Developer (Vue.js) at **FPT Software**  
-☕ Building backend skills with **Java Spring Boot**  
-⚡ Developing modern apps with **Next.js**  
+</div>
 
-🤝 Open to **full-stack & backend-heavy projects** (Microservices, APIs, AI)  
-🧩 Focused on **System Design & Performance Optimization**  
+## Tech Constellation
 
-🎓 Software Engineering @ FPT University  
+<div align="center">
 
-💬 Ask me about **Vue.js, Spring Boot, Next.js, ReactJS, REST APIs**  
-⚡ Fun fact: *Next.js for speed ⚡ — Java for scale 🚀*
+<h3>Core Languages</h3>
+
+<p>
+  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white" alt="C" />
+  <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
+</p>
+
+<h3>Backend Systems</h3>
+
+<p>
+  <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" />
+  <img src="https://img.shields.io/badge/Node.js-6DA55F?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/REST%20APIs-00E5FF?style=for-the-badge&logo=fastapi&logoColor=0D1117" alt="REST APIs" />
+  <img src="https://img.shields.io/badge/JWT-111827?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+  <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.io" />
+</p>
+
+<h3>Frontend Experience</h3>
+
+<p>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" alt="Vue.js" />
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
+  <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
+</p>
+
+<h3>Data, Cloud & Quality</h3>
+
+<p>
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Redis-DD0031?style=for-the-badge&logo=redis&logoColor=white" alt="Redis" />
+  <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />
+  <img src="https://img.shields.io/badge/Elasticsearch-0377CC?style=for-the-badge&logo=elasticsearch&logoColor=white" alt="Elasticsearch" />
+  <img src="https://img.shields.io/badge/Docker-0DB7ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx" />
+  <img src="https://img.shields.io/badge/GitHub%20Actions-2671E5?style=for-the-badge&logo=githubactions&logoColor=white" alt="GitHub Actions" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
+  <img src="https://img.shields.io/badge/Netlify-000000?style=for-the-badge&logo=netlify&logoColor=00C7B7" alt="Netlify" />
+  <img src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=firebase&logoColor=ffcd34" alt="Firebase" />
+  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright" />
+  <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white" alt="Testing Library" />
+  <img src="https://img.shields.io/badge/SonarQube-111827?style=for-the-badge&logo=sonarqube&logoColor=4E9BCD" alt="SonarQube" />
+</p>
 
 </div>
 
 <div align="center">
 
-## 🌐 Connect with me
-
-[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://facebook.com/tung.tung.tung.sahur110524)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/tran-xuan-truong-ab00b7317)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:tranxuantin1234@gmail.com)
-
-</div>
-
-<div align="center">
-
-<a href="https://giphy.com/gifs/Smolverse-smol-smolverse-swol-JqmupuTVZYaQX5s094">
-  <img src="https://media.giphy.com/media/JqmupuTVZYaQX5s094/giphy.gif" width="280" alt="Smolverse GIF" />
-</a>
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:22C55E,50:06B6D4,100:FF2BD6&height=2&section=header"
+    alt="Neon divider"
+  />
 
 </div>
 
-## 🧠 Tech Stack
-
-### 🧩 Languages
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
-
-### ☕ Backend
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
-
-### 🎨 Frontend
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-![Vue.js](https://img.shields.io/badge/vue.js-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
-
-### 🧱 UI Libraries & Visualization
-![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
-![Chart.js](https://img.shields.io/badge/chart.js-F5788D.svg?style=for-the-badge&logo=chart.js&logoColor=white)
-![JavaFX](https://img.shields.io/badge/javafx-%23FF0000.svg?style=for-the-badge&logo=javafx&logoColor=white)
-
-### 🗄️ Database & ORM
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
-![Elasticsearch](https://img.shields.io/badge/elasticsearch-%230377CC.svg?style=for-the-badge&logo=elasticsearch&logoColor=white)
-
-### ☁️ Hosting & Cloud
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
-![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=00C7B7)
-![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
-![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)
-
-### ⚙️ DevOps & Tools
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=for-the-badge&logo=nginx&logoColor=white)
-![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
-
-### 🧪 Testing & Code Quality
-![Playwright](https://img.shields.io/badge/-playwright-%232EAD33?style=for-the-badge&logo=playwright&logoColor=white)
-![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
-![SonarLint](https://img.shields.io/badge/SonarLint-CB2029?style=for-the-badge&logo=SONARLINT&logoColor=white)
-![SonarQube](https://img.shields.io/badge/SonarQube-black?style=for-the-badge&logo=sonarqube&logoColor=4E9BCD)
-
-### 🎯 Others
-![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)
-![Riot Games](https://img.shields.io/badge/riotgames-D32936.svg?style=for-the-badge&logo=riotgames&logoColor=white)
-
-# 📊 GitHub Stats:
-![](https://github-readme-stats.shion.dev/api?username=TruongTXK18FPT&theme=dracula&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://streak-stats.demolab.com/?user=TruongTXK18FPT&theme=dracula&hide_border=false)<br/>
-![](https://github-readme-stats.shion.dev/api/top-langs/?username=TruongTXK18FPT&theme=dracula&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
-
-## 🚀 Featured Projects
+## Live GitHub Signals
 
 <div align="center">
 
 <table>
-<tr>
-<td width="50%" align="center">
-
-### 🌌 SkillVerse
-
-A full-stack learning platform designed to support structured skill development, course exploration, and user-centered learning experiences.
-
-<p>
-<img src="https://img.shields.io/badge/Backend-111827?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Prototype-7c3aed?style=for-the-badge" />
-<img src="https://img.shields.io/badge/API-2563eb?style=for-the-badge" />
-</p>
-
-<a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
-<img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-<a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
-<img src="https://img.shields.io/badge/Prototype_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-
-</td>
-<td width="50%" align="center">
-
-### 🧠 MathMind
-
-A visual math learning web application that uses mind maps to organize concepts, formulas, and learning paths, helping students understand mathematics more clearly.
-
-<p>
-<img src="https://img.shields.io/badge/Math_Learning-0f766e?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Mind_Map-7c3aed?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Full_Stack-2563eb?style=for-the-badge" />
-</p>
-
-<a href="https://github.com/TruongTXK18FPT/MSS301-BE">
-<img src="https://img.shields.io/badge/Backend_Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-<a href="https://github.com/TruongTXK18FPT/MSS301-FE">
-<img src="https://img.shields.io/badge/Frontend_Repo-7c3aed?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-
-</td>
-</tr>
-
-<tr>
-<td width="50%" align="center">
-
-### 🐟 KOI Care System
-
-A home-based koi fish care management system that helps users manage ponds, track koi information, monitor care activities, and organize health-related records.
-
-<p>
-<img src="https://img.shields.io/badge/Management_System-111827?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Home_Care-0f766e?style=for-the-badge" />
-<img src="https://img.shields.io/badge/SWP391-2563eb?style=for-the-badge" />
-</p>
-
-<a href="https://github.com/TruongTXK18FPT/KOI-CARE-SYSTEM-AT-HOME-SWP391">
-<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-
-</td>
-<td width="50%" align="center">
-
-### 📚 MyELTS
-
-An English learning project inspired by IELTS practice, focused on study organization, learning flow, and a friendly practice experience for learners.
-
-<p>
-<img src="https://img.shields.io/badge/English_Learning-2563eb?style=for-the-badge" />
-<img src="https://img.shields.io/badge/IELTS_Practice-7c3aed?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
-</p>
-
-<a href="https://github.com/TruongTXK18FPT/MyELTS">
-<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-
-</td>
-</tr>
-
-<tr>
-<td width="50%" align="center">
-
-### 🏛️ LichSuDangLab
-
-An educational lab project for presenting historical knowledge in a clearer, more structured, and more accessible digital learning format.
-
-<p>
-<img src="https://img.shields.io/badge/Education-0f766e?style=for-the-badge" />
-<img src="https://img.shields.io/badge/History-92400e?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Lab_Project-2563eb?style=for-the-badge" />
-</p>
-
-<a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
-<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-
-</td>
-<td width="50%" align="center">
-
-### 💡 Triet Hoc 4.0
-
-A digital learning project that transforms philosophy topics into a modern and easier-to-explore experience for understanding abstract concepts.
-
-<p>
-<img src="https://img.shields.io/badge/Philosophy-7c3aed?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Digital_Learning-2563eb?style=for-the-badge" />
-<img src="https://img.shields.io/badge/4.0-111827?style=for-the-badge" />
-</p>
-
-<a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
-<img src="https://img.shields.io/badge/View_Project-181717?style=for-the-badge&logo=github&logoColor=white" />
-</a>
-
-</td>
-</tr>
+  <tr>
+    <td width="50%" align="center">
+      <img
+        width="100%"
+        src="https://github-readme-stats.shion.dev/api?username=TruongTXK18FPT&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=00E5FF&text_color=E2E8F0&icon_color=FF2BD6"
+        alt="TruongTXK18FPT GitHub stats"
+      />
+    </td>
+    <td width="50%" align="center">
+      <img
+        width="100%"
+        src="https://streak-stats.demolab.com?user=TruongTXK18FPT&theme=tokyonight-duo&hide_border=true&background=0D1117&ring=00E5FF&fire=FF2BD6&currStreakLabel=00E5FF"
+        alt="TruongTXK18FPT GitHub streak"
+      />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <img
+        width="100%"
+        src="https://github-readme-stats.shion.dev/api/top-langs/?username=TruongTXK18FPT&layout=compact&langs_count=8&hide_border=true&bg_color=0D1117&title_color=00E5FF&text_color=E2E8F0"
+        alt="TruongTXK18FPT top languages"
+      />
+    </td>
+    <td width="50%" align="center">
+      <img
+        width="100%"
+        src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=TruongTXK18FPT&theme=tokyonight&utcOffset=7"
+        alt="TruongTXK18FPT productive time"
+      />
+    </td>
+  </tr>
 </table>
+
+<img
+  width="100%"
+  src="https://github-readme-activity-graph.vercel.app/graph?username=TruongTXK18FPT&bg_color=0D1117&color=E2E8F0&line=00E5FF&point=FF2BD6&area=true&hide_border=true&custom_title=Contribution%20Signal%20Map"
+  alt="TruongTXK18FPT contribution activity graph"
+/>
+
+<img
+  width="100%"
+  src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=TruongTXK18FPT&theme=tokyonight"
+  alt="TruongTXK18FPT profile details summary"
+/>
 
 </div>
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=TruongTXK18FPT&theme=dracula&no-frame=false&no-bg=true&margin-w=4)
-## Commit Snake
+<div align="center">
+
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:00E5FF,50:7C3AED,100:FF2BD6&height=2&section=header"
+    alt="Neon divider"
+  />
+
+</div>
+
+## Featured Project: SkillVerse
+
+<table>
+  <tr>
+    <td width="100%" align="center">
+      <h3>SkillVerse | Learning Universe Platform</h3>
+      <p>
+        A full-stack learning platform built around structured skill development, course exploration,
+        and user-centered learning flows. This is the main orbit: backend systems, API design,
+        prototype iteration, and education-product thinking in one project.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/Universe-Learning%20Platform-7C3AED?style=for-the-badge&logo=bookstack&logoColor=white" alt="Learning platform badge" />
+        <img src="https://img.shields.io/badge/Backend-Spring%20Boot-00E5FF?style=for-the-badge&logo=springboot&logoColor=0D1117" alt="SkillVerse backend badge" />
+        <img src="https://img.shields.io/badge/API-Production--Ready-FF2BD6?style=for-the-badge&logo=fastapi&logoColor=white" alt="SkillVerse API badge" />
+        <img src="https://img.shields.io/badge/Prototype-Experience%20Flow-22C55E?style=for-the-badge&logo=figma&logoColor=0D1117" alt="SkillVerse prototype badge" />
+      </p>
+      <p>
+        <a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
+          <img src="https://img.shields.io/badge/Backend%20Repo-181717?style=for-the-badge&logo=github&logoColor=white" alt="SkillVerse backend repository" />
+        </a>
+        <a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
+          <img src="https://img.shields.io/badge/Prototype%20Repo-7C3AED?style=for-the-badge&logo=github&logoColor=white" alt="SkillVerse prototype repository" />
+        </a>
+      </p>
+    </td>
+  </tr>
+</table>
+
+## Project Galaxy
+
+<table>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <h3>MathMind</h3>
+      <p>
+        Visual math learning with mind maps, concept paths, formulas, and clearer study structure.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/Theme-Teal%20Learning%20Graph-0F766E?style=for-the-badge" alt="MathMind theme badge" />
+        <img src="https://img.shields.io/badge/Mind%20Map-Violet%20Nodes-7C3AED?style=for-the-badge" alt="MathMind mind map badge" />
+        <img src="https://img.shields.io/badge/Mode-Full%20Stack-06B6D4?style=for-the-badge" alt="MathMind full stack badge" />
+      </p>
+      <p>
+        <a href="https://github.com/TruongTXK18FPT/MSS301-BE">
+          <img src="https://img.shields.io/badge/Backend-181717?style=for-the-badge&logo=github&logoColor=white" alt="MathMind backend repository" />
+        </a>
+        <a href="https://github.com/TruongTXK18FPT/MSS301-FE">
+          <img src="https://img.shields.io/badge/Frontend-7C3AED?style=for-the-badge&logo=github&logoColor=white" alt="MathMind frontend repository" />
+        </a>
+      </p>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <h3>MyELTS</h3>
+      <p>
+        IELTS-inspired English learning project focused on study organization and friendly practice flow.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/Theme-Blue%20Language%20Lab-2563EB?style=for-the-badge" alt="MyELTS theme badge" />
+        <img src="https://img.shields.io/badge/Practice-Yellow%20Boost-FACC15?style=for-the-badge" alt="MyELTS practice badge" />
+        <img src="https://img.shields.io/badge/Domain-Education-0F766E?style=for-the-badge" alt="MyELTS education badge" />
+      </p>
+      <p>
+        <a href="https://github.com/TruongTXK18FPT/MyELTS">
+          <img src="https://img.shields.io/badge/View%20Project-181717?style=for-the-badge&logo=github&logoColor=white" alt="MyELTS repository" />
+        </a>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top" align="center">
+      <h3>LichSuDangLab</h3>
+      <p>
+        A digital history lab for presenting historical knowledge in a clearer, structured format.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/Theme-Crimson%20Archive-B91C1C?style=for-the-badge" alt="LichSuDangLab theme badge" />
+        <img src="https://img.shields.io/badge/Knowledge-Gold%20Timeline-F59E0B?style=for-the-badge" alt="LichSuDangLab timeline badge" />
+        <img src="https://img.shields.io/badge/Mode-Lab%20Project-2563EB?style=for-the-badge" alt="LichSuDangLab lab badge" />
+      </p>
+      <p>
+        <a href="https://github.com/TruongTXK18FPT/LichSuDangLab">
+          <img src="https://img.shields.io/badge/View%20Project-181717?style=for-the-badge&logo=github&logoColor=white" alt="LichSuDangLab repository" />
+        </a>
+      </p>
+    </td>
+    <td width="50%" valign="top" align="center">
+      <h3>Triet Hoc 4.0</h3>
+      <p>
+        A modern digital learning experience for making abstract philosophy topics easier to explore.
+      </p>
+      <p>
+        <img src="https://img.shields.io/badge/Theme-Indigo%20Thought%20Space-4F46E5?style=for-the-badge" alt="Triet Hoc theme badge" />
+        <img src="https://img.shields.io/badge/Concept-Gold%20Ideas-F59E0B?style=for-the-badge" alt="Triet Hoc concept badge" />
+        <img src="https://img.shields.io/badge/Learning-4.0-111827?style=for-the-badge" alt="Triet Hoc 4.0 badge" />
+      </p>
+      <p>
+        <a href="https://github.com/TruongTXK18FPT/Triet-hoc-4.0">
+          <img src="https://img.shields.io/badge/View%20Project-181717?style=for-the-badge&logo=github&logoColor=white" alt="Triet Hoc 4.0 repository" />
+        </a>
+      </p>
+    </td>
+  </tr>
+</table>
+
+<div align="center">
+
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:FF2BD6,50:7C3AED,100:00E5FF&height=2&section=header"
+    alt="Neon divider"
+  />
+
+</div>
+
+## Contribution Snake
+
 <picture>
   <source
     media="(prefers-color-scheme: dark)"
@@ -286,57 +343,40 @@ A digital learning project that transforms philosophy topics into a modern and e
     srcset="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-contribution-grid-snake.svg"
   />
   <img
-    alt="github contribution snake"
+    alt="GitHub contribution snake animation"
     src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-contribution-grid-snake.svg"
   />
 </picture>
 
-### ✍️ Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
-
----
-[![](https://komarev.com/ghpvc/?username=TruongTXK18FPT&icon=0&color=0)](https://visitcount.itsvg.in)
+## Connect
 
 <div align="center">
 
-  <!-- Cosmic Divider -->
-  <img 
-    src="https://user-images.githubusercontent.com/74038190/216656971-9a208450-7c4f-4f3a-85b7-7f0e7be3a0b1.gif" 
-    width="500" 
-    alt="cosmic divider" 
+  <a href="https://facebook.com/tung.tung.tung.sahur110524">
+    <img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook" />
+  </a>
+  <a href="https://linkedin.com/in/tran-xuan-truong-ab00b7317">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  <a href="mailto:tranxuantin1234@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
+  </a>
+  <a href="https://github.com/TruongTXK18FPT">
+    <img src="https://img.shields.io/badge/GitHub-TruongTXK18FPT-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+
+  <br />
+  <br />
+
+  <img
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=3000&pause=900&color=E0F2FE&center=true&vCenter=true&width=850&lines=Thanks+for+visiting+my+profile;Keep+building.+Keep+learning.+Keep+scaling.;See+you+somewhere+in+the+code+universe."
+    alt="Footer typing SVG"
   />
 
-  <br />
-
-  <!-- Footer Typing Quote -->
-  <img 
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=3000&pause=1000&color=C084FC&center=true&vCenter=true&width=800&lines=Thanks+for+visiting+my+profile+%F0%9F%8C%8C;Keep+building.+Keep+learning.+Keep+scaling+%F0%9F%9A%80;See+you+somewhere+in+the+code+universe+%E2%9C%A8" 
-  />
-
-  <br />
-  <br />
-
-  <!-- Social / Contact Badges -->
-  <p>
-    <img src="https://img.shields.io/badge/GitHub-TruongTX-0f172a?style=for-the-badge&logo=github&logoColor=white" />
-    <img src="https://img.shields.io/badge/Portfolio-Coming%20Soon-7c3aed?style=for-the-badge&logo=vercel&logoColor=white" />
-    <img src="https://img.shields.io/badge/Focus-Backend%20Systems-a855f7?style=for-the-badge&logo=apachekafka&logoColor=white" />
-  </p>
-
-  <!-- Visitor Counter -->
-  <img 
-    src="https://komarev.com/ghpvc/?username=TruongTX&style=for-the-badge&color=7c3aed&label=PROFILE+VIEWS" 
-    alt="profile views" 
-  />
-
-  <br />
-  <br />
-
-  <!-- Galaxy Footer Wave -->
-  <img 
-    width="100%" 
-    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,25:1e1b4b,50:4c1d95,75:7c3aed,100:c084fc&height=160&section=footer&animation=twinkling" 
+  <img
+    width="100%"
+    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,25:1e1b4b,50:4c1d95,75:7c3aed,100:06b6d4&height=155&section=footer&animation=twinkling"
+    alt="Galaxy neon footer"
   />
 
 </div>
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
