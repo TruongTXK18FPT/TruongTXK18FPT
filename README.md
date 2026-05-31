@@ -339,8 +339,6 @@
 
 </div>
 
-## ✨ Contributions ✨
-
 <!-- DORAEMON_CONTRIBUTION_START -->
 <p align="center">
   <img
