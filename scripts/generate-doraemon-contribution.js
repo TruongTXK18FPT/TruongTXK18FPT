@@ -446,7 +446,7 @@ function generateSVG(weeks, isDark) {
       transform: translate(30px, 60px);
     }
     
-    /* Doraemon Movement & Sprite Animations */
+    /* Doraemon Movement and Sprite Animations */
     ${doremonMoveKeyframes}
     ${doremonSpriteKeyframes}
     
