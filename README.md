@@ -339,15 +339,42 @@
 
 </div>
 
-## Doraemon Contribution Journey
+## ✦ Contributions ✦
 
-<p align="center">
-  <img
-    width="100%"
-    src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-dark.svg?v=2"
-    alt="Doraemon contribution animation"
-  />
-</p>
+<!-- DORAEMON_CONTRIBUTION_START -->
+<details open>
+  <summary>📅 <b>Năm 2026</b> (529 commits - Bấm để đóng/mở)</summary>
+  <p align="center">
+    <img
+      width="100%"
+      src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-2026-dark.svg?v=2"
+      alt="Doraemon contribution 2026"
+    />
+  </p>
+</details>
+
+<details>
+  <summary>📅 <b>Năm 2025</b> (430 commits)</summary>
+  <p align="center">
+    <img
+      width="100%"
+      src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-2025-dark.svg?v=2"
+      alt="Doraemon contribution 2025"
+    />
+  </p>
+</details>
+
+<details>
+  <summary>📅 <b>Năm 2024</b> (431 commits)</summary>
+  <p align="center">
+    <img
+      width="100%"
+      src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-2024-dark.svg?v=2"
+      alt="Doraemon contribution 2024"
+    />
+  </p>
+</details>
+<!-- DORAEMON_CONTRIBUTION_END -->
 
 ## ✦ Connect with me ✦
 

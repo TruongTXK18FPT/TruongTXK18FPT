@@ -4,38 +4,41 @@ const https = require('https');
 
 // Paths
 const doremonPath = path.join(__dirname, '../assets/doremon.png');
-const cakePath = path.join(__dirname, '../assets/cake.png');
+const dorayakiPath = path.join(__dirname, '../assets/dorayaki.png');
 
 // Read and Base64 encode the sprite sheets
 const doremonBase64 = fs.readFileSync(doremonPath).toString('base64');
-const cakeBase64 = fs.readFileSync(cakePath).toString('base64');
+const dorayakiBase64 = fs.readFileSync(dorayakiPath).toString('base64');
 
-// Fallback Mock Contribution Data in case API is unavailable
-function generateMockContributions() {
-  console.log("Generating mock contribution calendar as fallback...");
+// Fallback Mock Contribution Data for last 3 years
+function generateMockContributions(year) {
+  console.log(`Generating mock contribution calendar for ${year}...`);
   const weeks = [];
-  const now = new Date();
-  const startDate = new Date(now.getTime() - 364 * 24 * 60 * 60 * 1000); // 52 weeks ago
+  const startDate = new Date(`${year}-01-01`);
+  const endDate = new Date(`${year}-12-31`);
   
-  // Align to Sunday
+  // Align start to Sunday
   const startDay = startDate.getDay();
   startDate.setDate(startDate.getDate() - startDay);
 
   let currentDate = new Date(startDate);
+  // 53 weeks to cover the whole year
   for (let w = 0; w < 53; w++) {
     const contributionDays = [];
     for (let d = 0; d < 7; d++) {
-      // Create some nice patterns and commit density
       let count = 0;
       let level = 0;
       
-      const rand = Math.random();
-      if (rand > 0.65) {
-        count = Math.floor(Math.random() * 10) + 1;
-        if (count < 3) level = 1;
-        else if (count < 6) level = 2;
-        else if (count < 9) level = 3;
-        else level = 4;
+      const currYear = currentDate.getFullYear();
+      if (currYear === year) {
+        const rand = Math.random();
+        if (rand > 0.70) {
+          count = Math.floor(Math.random() * 8) + 1;
+          if (count < 3) level = 1;
+          else if (count < 5) level = 2;
+          else if (count < 8) level = 3;
+          else level = 4;
+        }
       }
       
       contributionDays.push({
@@ -48,23 +51,67 @@ function generateMockContributions() {
     }
     weeks.push({ contributionDays });
   }
-  return weeks;
+  
+  // Calculate mock total contributions
+  let total = 0;
+  weeks.forEach(w => w.contributionDays.forEach(d => {
+    if (new Date(d.date).getFullYear() === year) {
+      total += d.contributionCount;
+    }
+  }));
+
+  return { weeks, total };
 }
 
-// Fetch contribution data from GitHub GraphQL API
-function fetchContributions(owner, token) {
+// Fetch 3 years of contribution data in a single GraphQL query
+function fetchAllContributions(owner, token, currentYear) {
   return new Promise((resolve) => {
+    const y0 = currentYear;
+    const y1 = currentYear - 1;
+    const y2 = currentYear - 2;
+
     if (!token) {
-      console.warn("No GITHUB_TOKEN found. Using mock data.");
-      return resolve(generateMockContributions());
+      console.warn("No GITHUB_TOKEN found. Using mock data for all years.");
+      return resolve({
+        [y0]: generateMockContributions(y0),
+        [y1]: generateMockContributions(y1),
+        [y2]: generateMockContributions(y2)
+      });
     }
 
     const query = JSON.stringify({
       query: `
         query($login: String!) {
           user(login: $login) {
-            contributionsCollection {
+            y${y0}: contributionsCollection(from: "${y0}-01-01T00:00:00Z", to: "${y0}-12-31T23:59:59Z") {
               contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    level
+                    weekday
+                    date
+                  }
+                }
+              }
+            }
+            y${y1}: contributionsCollection(from: "${y1}-01-01T00:00:00Z", to: "${y1}-12-31T23:59:59Z") {
+              contributionCalendar {
+                totalContributions
+                weeks {
+                  contributionDays {
+                    contributionCount
+                    level
+                    weekday
+                    date
+                  }
+                }
+              }
+            }
+            y${y2}: contributionsCollection(from: "${y2}-01-01T00:00:00Z", to: "${y2}-12-31T23:59:59Z") {
+              contributionCalendar {
+                totalContributions
                 weeks {
                   contributionDays {
                     contributionCount
@@ -100,21 +147,47 @@ function fetchContributions(owner, token) {
         try {
           const json = JSON.parse(data);
           if (json.errors || !json.data || !json.data.user) {
-            console.error("GraphQL API errors or empty response, falling back to mock data:", json.errors || json);
-            return resolve(generateMockContributions());
+            console.error("GraphQL API errors, falling back:", json.errors || json);
+            return resolve({
+              [y0]: generateMockContributions(y0),
+              [y1]: generateMockContributions(y1),
+              [y2]: generateMockContributions(y2)
+            });
           }
-          const weeks = json.data.user.contributionsCollection.contributionCalendar.weeks;
-          resolve(weeks);
+          
+          const user = json.data.user;
+          resolve({
+            [y0]: {
+              weeks: user[`y${y0}`].contributionCalendar.weeks,
+              total: user[`y${y0}`].contributionCalendar.totalContributions
+            },
+            [y1]: {
+              weeks: user[`y${y1}`].contributionCalendar.weeks,
+              total: user[`y${y1}`].contributionCalendar.totalContributions
+            },
+            [y2]: {
+              weeks: user[`y${y2}`].contributionCalendar.weeks,
+              total: user[`y${y2}`].contributionCalendar.totalContributions
+            }
+          });
         } catch (e) {
           console.error("Error parsing API response, falling back:", e);
-          resolve(generateMockContributions());
+          resolve({
+            [y0]: generateMockContributions(y0),
+            [y1]: generateMockContributions(y1),
+            [y2]: generateMockContributions(y2)
+          });
         }
       });
     });
 
     req.on('error', (e) => {
       console.error("HTTP request error, falling back:", e);
-      resolve(generateMockContributions());
+      resolve({
+        [y0]: generateMockContributions(y0),
+        [y1]: generateMockContributions(y1),
+        [y2]: generateMockContributions(y2)
+      });
     });
 
     req.write(query);
@@ -122,9 +195,8 @@ function fetchContributions(owner, token) {
   });
 }
 
-// Generate the customized SVG
-function generateSVG(weeks, isDark) {
-  // Theme styling configurations
+// Generate the customized SVG for a specific year
+function generateSVG(weeks, totalCommits, year, isDark) {
   const theme = isDark ? {
     bg: '#0d1117',
     gridEmpty: '#161622',
@@ -141,7 +213,7 @@ function generateSVG(weeks, isDark) {
     titleColor: '#0366d6'
   };
 
-  // Extract all cells with contributions > 0
+  // Find all cells with contributions > 0
   const activeCells = [];
   weeks.forEach((week, w) => {
     week.contributionDays.forEach((day) => {
@@ -157,27 +229,20 @@ function generateSVG(weeks, isDark) {
     });
   });
 
-  // Select target cells to hunt.
-  // To keep the SVG animation size optimized and look highly engaging,
-  // we select the 12 most recent active cells.
+  // Target paths - Doraemon MUST hunt ALL commits in chronological order!
   let targets = [];
-  if (activeCells.length >= 5) {
-    // Sort by date descending and grab recent 12, then sort them chronologically/spatially for a smooth path
-    const sorted = [...activeCells]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 12);
-    // Sort by week and day so Doraemon has a natural spatial route
-    targets = sorted.sort((a, b) => (a.w !== b.w) ? a.w - b.w : a.d - b.d);
+  if (activeCells.length > 0) {
+    // Sort chronologically (by date) so Doraemon traverses the calendar sequentially
+    targets = [...activeCells].sort((a, b) => new Date(a.date) - new Date(b.date));
   } else {
-    // Default mock path in case there are too few commits
+    // Default fallback circular targets if no commits found
     targets = [
-      { w: 5, d: 2, level: 3 }, { w: 10, d: 5, level: 4 }, { w: 15, d: 1, level: 2 },
-      { w: 22, d: 4, level: 3 }, { w: 30, d: 0, level: 4 }, { w: 38, d: 6, level: 2 },
-      { w: 45, d: 3, level: 3 }, { w: 50, d: 1, level: 4 }
+      { w: 5, d: 2, level: 3 }, { w: 15, d: 5, level: 4 }, { w: 25, d: 1, level: 2 },
+      { w: 35, d: 4, level: 3 }, { w: 45, d: 1, level: 4 }
     ];
   }
 
-  // Calculate cumulative movement timeline
+  // Calculate coordinates timeline
   const timeline = [];
   let currentTime = 0;
   
@@ -269,13 +334,11 @@ function generateSVG(weeks, isDark) {
     // Sprite Selection keyframe (step-end)
     let frameIdx = 0;
     if (point.state === 'walk') {
-      // Toggle walk frames 1 and 2 every 0.15s
       const walkCycle = Math.floor(point.time / 0.15) % 2;
       frameIdx = walkCycle === 0 ? 1 : 2;
     } else if (point.state === 'eat') {
-      frameIdx = 3; // Eat (open mouth)
+      frameIdx = 3; // Eat
     } else if (point.state === 'chew') {
-      // Cycle chew frames 8, 9, 10, 11
       const chewCycle = Math.floor((point.time - point.eatStart) / 0.175) % 4;
       frameIdx = 8 + chewCycle;
     } else {
@@ -288,11 +351,9 @@ function generateSVG(weeks, isDark) {
   doremonMoveKeyframes += `}`;
   doremonSpriteKeyframes += `}`;
 
-  // Generate CSS keyframes for each target Dorayaki (donut)
+  // Generate CSS keyframes for each target Dorayaki
   let targetDonutCSS = '';
   targets.forEach((cell, idx) => {
-    // Find when this target is eaten.
-    // The target is eaten when Doraemon arrives at this index.
     const eatEvent = timeline.find(p => p.targetIdx === idx && (p.state === 'eat' || p.state === 'chew'));
     
     if (eatEvent && eatEvent.eatStart !== undefined) {
@@ -304,8 +365,6 @@ function generateSVG(weeks, isDark) {
 
       let keyframes = `@keyframes donut-sprite-${idx} {\n`;
       
-      // Idle state: cycle full donut frames (0, 1, 2, 3)
-      // We sample points from 0 to eatStart every 1s
       let t = 0;
       while (t < eatStart) {
         const pct = ((t / totalDuration) * 100).toFixed(2);
@@ -314,10 +373,8 @@ function generateSVG(weeks, isDark) {
         t += 0.5;
       }
       
-      // Right before eating starts
       keyframes += `  ${(eatStartPct - 0.01).toFixed(2)}% { transform: translate(-${(Math.floor(eatStart / 0.25) % 4) * 12}px, 0); }\n`;
       
-      // Eating frames (8, 9, 10, 11, 12, 13, 14, 15)
       const eatStep = 0.3 / 8;
       for (let f = 0; f < 8; f++) {
         const timeOffset = eatStart + f * eatStep;
@@ -326,7 +383,6 @@ function generateSVG(weeks, isDark) {
         keyframes += `  ${pct}% { transform: translate(-${frameIdx * 12}px, 0); }\n`;
       }
       
-      // Fully eaten (invisible frame at index 12 in our donut sprite layout, translating -144px)
       keyframes += `  ${eatEndPct.toFixed(2)}% { transform: translate(-144px, 0); }\n`;
       keyframes += `  99.99% { transform: translate(-144px, 0); }\n`;
       keyframes += `  100% { transform: translate(0, 0); }\n`;
@@ -337,7 +393,7 @@ function generateSVG(weeks, isDark) {
     }
   });
 
-  // Sparkles/Stars animation CSS
+  // Sparkles
   let starCSS = `
   @keyframes sparkle-glow {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -348,18 +404,15 @@ function generateSVG(weeks, isDark) {
   }
   `;
 
-  // Draw the contribution grid cells
+  // Draw cells
   let gridCells = '';
   weeks.forEach((week, w) => {
     week.contributionDays.forEach((day) => {
       const x = 2 + w * 12;
       const y = 2 + day.weekday * 12;
       
-      // Determine background color of the cell
       let cellColor = theme.gridEmpty;
       if (day.contributionCount > 0) {
-        // If it's a target, we draw it empty underneath since there is a donut on top of it.
-        // Otherwise, it gets a beautiful soft color corresponding to commit level
         if (day.level === 1) cellColor = isDark ? '#262930' : '#f5e0dc';
         else if (day.level === 2) cellColor = isDark ? '#2a354f' : '#f5c2e7';
         else if (day.level === 3) cellColor = isDark ? '#31416b' : '#cba6f7';
@@ -370,17 +423,15 @@ function generateSVG(weeks, isDark) {
     });
   });
 
-  // Draw the Donuts (Dorayakis) on active cells
+  // Draw Dorayakis
   let gridDonuts = '';
   activeCells.forEach((cell) => {
     const x = 2 + cell.w * 12 - 1;
     const y = 2 + cell.d * 12 - 1;
     
-    // Check if this cell is one of our animated targets
     const targetIdx = targets.findIndex(t => t.w === cell.w && t.d === cell.d);
     
     if (targetIdx !== -1) {
-      // Dynamic animated donut
       gridDonuts += `
       <g transform="translate(${x}, ${y})">
         <svg width="12" height="12" viewBox="0 0 12 12" style="overflow: hidden;">
@@ -402,7 +453,6 @@ function generateSVG(weeks, isDark) {
         </svg>
       </g>\n`;
     } else {
-      // Static/breathing general donut
       const randomOffset = Math.floor(Math.random() * 4);
       gridDonuts += `
       <g transform="translate(${x}, ${y})">
@@ -418,11 +468,6 @@ function generateSVG(weeks, isDark) {
     }
   });
 
-  // Calculate grid dimensions
-  const gridWidth = 53 * 12 + 2;
-  const gridHeight = 7 * 12 + 2;
-
-  // Final SVG Construction
   return `<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 180" width="100%" height="100%">
   <style>
@@ -480,7 +525,7 @@ function generateSVG(weeks, isDark) {
   <defs>
     <!-- Single instances of high-res sprite sheet images to prevent redundant base64 replication -->
     <image id="doremon-spritesheet" href="data:image/png;base64,${doremonBase64}" width="1024" height="835"/>
-    <image id="cake-spritesheet" href="data:image/png;base64,${cakeBase64}" width="1254" height="1254"/>
+    <image id="cake-spritesheet" href="data:image/png;base64,${dorayakiBase64}" width="1254" height="1254"/>
 
     <!-- Sprite definitions cropped via viewboxes referencing the single images above -->
     <!-- Doraemon Sprite frames (20x22 SVG canvas) -->
@@ -522,8 +567,8 @@ function generateSVG(weeks, isDark) {
   <rect class="background" width="100%" height="100%" />
 
   <!-- Titles -->
-  <text class="text-title" x="30" y="32">✦ Doraemon's Contribution Journey ✦</text>
-  <text class="text-subtitle" x="30" y="47">Doraemon is eating actual code contributions (Dorayakis) one-by-one!</text>
+  <text class="text-title" x="30" y="32">✦ Contributions: ${year} ✦</text>
+  <text class="text-subtitle" x="30" y="47">Total contributions: ${totalCommits} commits in ${year}</text>
 
   <!-- Contribution Grid Section -->
   <g class="grid-container">
@@ -557,30 +602,105 @@ function generateSVG(weeks, isDark) {
 `;
 }
 
+// Update the README.md dynamically with interactive details tags and commit counters
+function updateReadme(dataMap, currentYear) {
+  const readmePath = path.join(__dirname, '../README.md');
+  if (!fs.existsSync(readmePath)) return;
+
+  const content = fs.readFileSync(readmePath, 'utf8');
+  
+  const y0 = currentYear;
+  const y1 = currentYear - 1;
+  const y2 = currentYear - 2;
+
+  const totalY0 = dataMap[y0].total;
+  const totalY1 = dataMap[y1].total;
+  const totalY2 = dataMap[y2].total;
+
+  const repoOwner = process.env.GITHUB_REPOSITORY || "TruongTXK18FPT/TruongTXK18FPT";
+  
+  // Custom interactive details layout
+  const newDetailsSection = `
+<details open>
+  <summary>📅 <b>Năm ${y0}</b> (${totalY0} commits - Bấm để đóng/mở)</summary>
+  <p align="center">
+    <img
+      width="100%"
+      src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-${y0}-dark.svg?v=2"
+      alt="Doraemon contribution ${y0}"
+    />
+  </p>
+</details>
+
+<details>
+  <summary>📅 <b>Năm ${y1}</b> (${totalY1} commits)</summary>
+  <p align="center">
+    <img
+      width="100%"
+      src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-${y1}-dark.svg?v=2"
+      alt="Doraemon contribution ${y1}"
+    />
+  </p>
+</details>
+
+<details>
+  <summary>📅 <b>Năm ${y2}</b> (${totalY2} commits)</summary>
+  <p align="center">
+    <img
+      width="100%"
+      src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-${y2}-dark.svg?v=2"
+      alt="Doraemon contribution ${y2}"
+    />
+  </p>
+</details>
+`;
+
+  // Standard string replacement between comments
+  const startIndex = content.indexOf('<!-- DORAEMON_CONTRIBUTION_START -->');
+  const endIndex = content.indexOf('<!-- DORAEMON_CONTRIBUTION_END -->');
+
+  if (startIndex !== -1 && endIndex !== -1) {
+    const updatedContent = content.substring(0, startIndex + '<!-- DORAEMON_CONTRIBUTION_START -->'.length) +
+      newDetailsSection +
+      content.substring(endIndex);
+    fs.writeFileSync(readmePath, updatedContent);
+    console.log("Successfully updated README.md with interactive details tabs and commit counts!");
+  } else {
+    console.warn("Could not find DORAEMON_CONTRIBUTION placeholders in README.md. Adding standard fallback.");
+  }
+}
+
 // Main Execution
 async function main() {
   const token = process.env.GITHUB_TOKEN;
-  // Get owner from env or default to TruongTXK18FPT
   const repo = process.env.GITHUB_REPOSITORY || "TruongTXK18FPT/TruongTXK18FPT";
   const owner = repo.split('/')[0];
 
-  console.log(`Starting custom Doraemon contribution generator for owner: ${owner}...`);
+  const currentYear = new Date().getFullYear();
+  console.log(`Starting dynamic multi-year Doraemon contribution generator for owner: ${owner}...`);
 
-  const weeks = await fetchContributions(owner, token);
-
-  const lightSVG = generateSVG(weeks, false);
-  const darkSVG = generateSVG(weeks, true);
+  const dataMap = await fetchAllContributions(owner, token, currentYear);
 
   const distDir = path.join(__dirname, '../dist');
   if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir, { recursive: true });
   }
 
-  fs.writeFileSync(path.join(distDir, 'github-doraemon-contribution.svg'), lightSVG);
-  console.log("Successfully generated: dist/github-doraemon-contribution.svg");
+  // Loop through each year, generate light & dark SVGs
+  const years = [currentYear, currentYear - 1, currentYear - 2];
+  for (const year of years) {
+    const { weeks, total } = dataMap[year];
+    
+    const lightSVG = generateSVG(weeks, total, year, false);
+    const darkSVG = generateSVG(weeks, total, year, true);
 
-  fs.writeFileSync(path.join(distDir, 'github-doraemon-contribution-dark.svg'), darkSVG);
-  console.log("Successfully generated: dist/github-doraemon-contribution-dark.svg");
+    fs.writeFileSync(path.join(distDir, `github-doraemon-contribution-${year}.svg`), lightSVG);
+    fs.writeFileSync(path.join(distDir, `github-doraemon-contribution-${year}-dark.svg`), darkSVG);
+    console.log(`Successfully generated SVGs for year ${year} (Total contributions: ${total})`);
+  }
+
+  // Update the README
+  updateReadme(dataMap, currentYear);
 }
 
 main().catch(console.error);
