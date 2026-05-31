@@ -339,22 +339,15 @@
 
 </div>
 
-## Contribution Snake
+## Doraemon Contribution Journey
 
-<picture>
-  <source
-    media="(prefers-color-scheme: dark)"
-    srcset="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-contribution-grid-snake-dark.svg"
-  />
-  <source
-    media="(prefers-color-scheme: light)"
-    srcset="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-contribution-grid-snake.svg"
-  />
+<p align="center">
   <img
-    alt="GitHub contribution snake animation"
-    src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-contribution-grid-snake.svg"
+    width="100%"
+    src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-dark.svg"
+    alt="Doraemon contribution animation"
   />
-</picture>
+</p>
 
 ## ✦ Connect with me ✦
 
