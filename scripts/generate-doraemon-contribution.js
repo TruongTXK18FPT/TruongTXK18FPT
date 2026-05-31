@@ -263,87 +263,117 @@ function generateSVG(weeks, totalCommits, isDark) {
 
   const pauseStart = currentTime;
 
-  // Storyboard timeline additions (Total Pause: 8.5 seconds)
-  // 1. Happy Full (1.5s)
+  // 1. Normal Size Celebrate (1.5s) - Normal Doraemon celebrates
   currentTime += 1.5;
-  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'happy_full', eatStart: pauseStart });
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'normal_celebrate', celebrateStart: pauseStart });
 
-  // 2. Stuffed sitting (1.5s)
+  // 2. Belly Expands (1.2s) - Transitions from normal to fat (grows frame by frame)
+  const expandStart = currentTime;
+  currentTime += 1.2;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'belly_expand', expandStart: expandStart });
+
+  // 3. Stuffed Sitting (1.5s) - Heavy stuffed idle sitting
+  const stuffedStart = currentTime;
   currentTime += 1.5;
-  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fat_idle', eatStart: pauseStart });
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fat_idle', stuffedStart: stuffedStart });
 
-  // 3. Fall 1 (0.5s)
+  // 4. Fall 1 (0.5s) - Tipping over
+  const fall1Start = currentTime;
   currentTime += 0.5;
-  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fall_1', eatStart: pauseStart });
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fall_1', fall1Start: fall1Start });
 
-  // 4. Fall 2 (0.5s)
+  // 5. Fall 2 (0.5s) - On the ground
+  const fall2Start = currentTime;
   currentTime += 0.5;
-  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fall_2', eatStart: pauseStart });
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fall_2', fall2Start: fall2Start });
 
-  // 5. Sleep (3.0s)
+  // 6. Sleep (3.0s) - Snoozing on back
+  const sleepStart = currentTime;
   currentTime += 3.0;
-  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'sleep', eatStart: pauseStart });
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'sleep', sleepStart: sleepStart });
 
-  // 6. Wake up (1.5s)
+  // 7. Wake Up (1.5s) - Startled wake up
+  const wakeStart = currentTime;
   currentTime += 1.5;
-  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'wake_up', eatStart: pauseStart });
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'wake_up', wakeStart: wakeStart });
 
   const totalDuration = currentTime;
 
-  // Generate CSS Keyframes for Doraemon's Position
+  // Generate CSS Keyframes for Doraemon's Position and Sprite with 20 FPS sampling
   let doremonMoveKeyframes = `@keyframes doremon-move {\n`;
   let doremonSpriteKeyframes = `@keyframes doremon-sprite {\n`;
 
-  timeline.forEach((point) => {
-    const pct = ((point.time / totalDuration) * 100).toFixed(2);
-    
-    // Position keyframe
-    doremonMoveKeyframes += `  ${pct}% { transform: translate(${point.x}px, ${point.y}px); }\n`;
+  const sampleStep = 0.05; // 20 FPS sampling for perfectly smooth animation
 
-    // Sprite Selection keyframe (step-end)
-    let frameSpec = ''; // 'normal-[idx]' or 'fat-[idx]'
+  for (let j = 0; j < timeline.length - 1; j++) {
+    const p1 = timeline[j];
+    const p2 = timeline[j + 1];
     
-    if (point.state === 'walk') {
-      const walkCycle = Math.floor(point.time / 0.15) % 2;
-      // Cycle frames 1 and 2 from doremon.png
-      frameSpec = `normal-${walkCycle === 0 ? 1 : 2}`;
-    } else if (point.state === 'eat') {
-      frameSpec = 'normal-3'; // Eat mouth open from doremon.png
-    } else if (point.state === 'chew') {
-      const chewCycle = Math.floor((point.time - point.eatStart) / 0.175) % 4;
-      frameSpec = `normal-${8 + chewCycle}`; // Chew cycle from doremon.png
-    } else if (point.state === 'happy_full') {
-      frameSpec = 'fat-3'; // Happy Full (fatdoremon.png frame 3)
-    } else if (point.state === 'fat_idle') {
-      frameSpec = 'fat-4'; // Stuffed sitting (fatdoremon.png frame 4)
-    } else if (point.state === 'fall_1') {
-      frameSpec = 'fat-5'; // Tipping over (fatdoremon.png frame 5)
-    } else if (point.state === 'fall_2') {
-      frameSpec = 'fat-6'; // Ground (fatdoremon.png frame 6)
-    } else if (point.state === 'sleep') {
-      const sleepCycle = Math.floor((point.time - (point.eatStart + 4.0)) / 0.5) % 4;
-      // Cycle frames 7, 8, 9, 10 from fatdoremon.png
-      frameSpec = `fat-${7 + Math.max(0, Math.min(3, sleepCycle))}`;
-    } else if (point.state === 'wake_up') {
-      frameSpec = 'fat-11'; // Wake up startled (fatdoremon.png frame 11)
-    } else {
-      frameSpec = 'normal-0'; // Idle
+    const tStart = p1.time;
+    const tEnd = p2.time;
+    const duration = tEnd - tStart;
+    
+    let t = tStart;
+    while (t < tEnd) {
+      const pct = ((t / totalDuration) * 100).toFixed(2);
+      const ratio = duration > 0 ? (t - tStart) / duration : 0;
+      const x = (p1.x + (p2.x - p1.x) * ratio).toFixed(1);
+      const y = (p1.y + (p2.y - p1.y) * ratio).toFixed(1);
+      
+      doremonMoveKeyframes += `  ${pct}% { transform: translate(${x}px, ${y}px); }\n`;
+      
+      let frameSpec = '';
+      if (p2.state === 'walk') {
+        const walkCycle = Math.floor(t / 0.15) % 2;
+        frameSpec = `normal-${walkCycle === 0 ? 1 : 2}`;
+      } else if (p2.state === 'eat') {
+        frameSpec = 'normal-3';
+      } else if (p2.state === 'chew') {
+        const chewCycle = Math.floor((t - p2.eatStart) / 0.175) % 4;
+        frameSpec = `normal-${8 + chewCycle}`;
+      } else if (p2.state === 'normal_celebrate') {
+        const celebCycle = Math.floor((t - p2.celebrateStart) / 0.3) % 4;
+        frameSpec = `normal-${4 + celebCycle}`;
+      } else if (p2.state === 'belly_expand') {
+        const expandCycle = Math.floor((t - p2.expandStart) / 0.3) % 4;
+        frameSpec = `fat-${expandCycle}`;
+      } else if (p2.state === 'fat_idle') {
+        frameSpec = 'fat-4';
+      } else if (p2.state === 'fall_1') {
+        frameSpec = 'fat-5';
+      } else if (p2.state === 'fall_2') {
+        frameSpec = 'fat-6';
+      } else if (p2.state === 'sleep') {
+        const sleepCycle = Math.floor((t - p2.sleepStart) / 0.5) % 4;
+        frameSpec = `fat-${7 + sleepCycle}`;
+      } else if (p2.state === 'wake_up') {
+        frameSpec = 'fat-11';
+      } else {
+        frameSpec = 'normal-0';
+      }
+      
+      const isFat = frameSpec.startsWith('fat-');
+      const idx = parseInt(frameSpec.split('-')[1]);
+      const spriteTranslateX = -(idx * 20);
+      const spriteTranslateY = isFat ? -22 : 0;
+      
+      doremonSpriteKeyframes += `  ${pct}% { transform: translate(${spriteTranslateX}px, ${spriteTranslateY}px); }\n`;
+      
+      t += sampleStep;
     }
+  }
 
-    // Convert frameSpec to translation inside the crop SVG
-    const isFat = frameSpec.startsWith('fat-');
-    const idx = parseInt(frameSpec.split('-')[1]);
-    
-    // In our combined layout:
-    // normal sprites row: y = 0, x = idx * 20
-    // fat sprites row: y = -22, x = idx * 20
-    const spriteTranslateX = -(idx * 20);
-    const spriteTranslateY = isFat ? -22 : 0;
+  // Final 100% state
+  const lastPoint = timeline[timeline.length - 1];
+  doremonMoveKeyframes += `  100% { transform: translate(${lastPoint.x}px, ${lastPoint.y}px); }\n}`;
 
-    doremonSpriteKeyframes += `  ${pct}% { transform: translate(${spriteTranslateX}px, ${spriteTranslateY}px); }\n`;
-  });
-  doremonMoveKeyframes += `}`;
-  doremonSpriteKeyframes += `}`;
+  let finalFrameSpec = 'normal-0';
+  if (lastPoint.state === 'wake_up') {
+    finalFrameSpec = 'fat-11';
+  }
+  const isFat = finalFrameSpec.startsWith('fat-');
+  const idx = parseInt(finalFrameSpec.split('-')[1]);
+  doremonSpriteKeyframes += `  100% { transform: translate(${-(idx * 20)}px, ${isFat ? -22 : 0}px); }\n}`;
 
   // Generate CSS keyframes for each target Dorayaki
   let targetDonutCSS = '';
@@ -519,7 +549,7 @@ function generateSVG(weeks, totalCommits, isDark) {
   <defs>
     <!-- Single instances of high-res sprite sheets to prevent redundant base64 replication -->
     <image id="doremon-spritesheet" href="data:image/png;base64,${doremonBase64}" width="1024" height="835"/>
-    <image id="cake-spritesheet" href="data:image/png;base64,${dorayakiBase64}" width="1254" height="1254"/>
+    <image id="cake-spritesheet" href="data:image/png;base64,${dorayakiBase64}" width="1024" height="1024"/>
     <image id="fatdoremon-spritesheet" href="data:image/png;base64,${fatdoremonBase64}" width="1536" height="1024"/>
 
     <!-- Sprite definitions cropped via viewboxes referencing the single images above -->
@@ -559,20 +589,20 @@ function generateSVG(weeks, totalCommits, isDark) {
 
     <!-- Donut Sprite frames (12x12 SVG canvas) -->
     <!-- Row 0 (Full) -->
-    <g id="donut-frame-0"><svg width="12" height="12" viewBox="0 0 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-1"><svg width="12" height="12" viewBox="313.5 0 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-2"><svg width="12" height="12" viewBox="627 0 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-3"><svg width="12" height="12" viewBox="940.5 0 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-0"><svg width="12" height="12" viewBox="0 0 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-1"><svg width="12" height="12" viewBox="256 0 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-2"><svg width="12" height="12" viewBox="512 0 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-3"><svg width="12" height="12" viewBox="768 0 256 256"><use href="#cake-spritesheet"/></svg></g>
     <!-- Row 2 (Bites) -->
-    <g id="donut-frame-8"><svg width="12" height="12" viewBox="0 627 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-9"><svg width="12" height="12" viewBox="313.5 627 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-10"><svg width="12" height="12" viewBox="627 627 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-11"><svg width="12" height="12" viewBox="940.5 627 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-8"><svg width="12" height="12" viewBox="0 512 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-9"><svg width="12" height="12" viewBox="256 512 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-10"><svg width="12" height="12" viewBox="512 512 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-11"><svg width="12" height="12" viewBox="768 512 256 256"><use href="#cake-spritesheet"/></svg></g>
     <!-- Row 3 (Crumbs) -->
-    <g id="donut-frame-12"><svg width="12" height="12" viewBox="0 940.5 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-13"><svg width="12" height="12" viewBox="313.5 940.5 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-14"><svg width="12" height="12" viewBox="627 940.5 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-15"><svg width="12" height="12" viewBox="940.5 940.5 313.5 313.5"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-12"><svg width="12" height="12" viewBox="0 768 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-13"><svg width="12" height="12" viewBox="256 768 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-14"><svg width="12" height="12" viewBox="512 768 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-15"><svg width="12" height="12" viewBox="768 768 256 256"><use href="#cake-spritesheet"/></svg></g>
   </defs>
 
   <!-- Background -->
@@ -592,7 +622,7 @@ function generateSVG(weeks, totalCommits, isDark) {
 
     <!-- Doraemon Pixel Mascot character -->
     <g class="doremon-mascot">
-      <svg width="20" height="44" viewBox="0 0 20 44" style="overflow: hidden;">
+      <svg width="20" height="22" viewBox="0 0 20 22" style="overflow: hidden;">
         <!-- Two rows stacked: row 0 = normal doremon, row 1 = fat doremon -->
         <g class="doremon-sprite-sheet" transform="translate(0, 0)">
           <!-- Normal Doraemon Row (y = 0) -->

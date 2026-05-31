@@ -32,7 +32,11 @@ function Resize-Image {
 }
 
 Write-Host "Starting pixel-perfect sprite sheet compression..."
+if (Test-Path "assets/dorayaki-nobackground.png") {
+    Copy-Item "assets/dorayaki-nobackground.png" "assets/dorayaki.png" -Force
+    Write-Host "Copied assets/dorayaki-nobackground.png to assets/dorayaki.png"
+}
 Resize-Image -Path "assets/fatdoremon.png" -NewWidth 768 -NewHeight 512
 Resize-Image -Path "assets/doremon.png" -NewWidth 512 -NewHeight 418
-Resize-Image -Path "assets/dorayaki.png" -NewWidth 627 -NewHeight 627
+Resize-Image -Path "assets/dorayaki.png" -NewWidth 512 -NewHeight 512
 Write-Host "Compression completed!"
