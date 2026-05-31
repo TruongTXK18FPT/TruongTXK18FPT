@@ -6,8 +6,6 @@
     alt="TruongTX Doraemon Cozy Header"
   />
 
-  <h1>TruongTX | Full-Stack Engineer | Backend-Heavy Builder</h1>
-
   <img
     src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=23&duration=2600&pause=700&color=89b4fa&center=true&vCenter=true&width=900&lines=Java+Spring+Boot+for+scale;Next.js+and+React+for+speed;System+Design+%7C+APIs+%7C+Performance;Building+SkillVerse+and+learning-tech+systems"
     alt="Typing SVG with TruongTX engineering focus"
