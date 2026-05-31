@@ -2,38 +2,39 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,22:0f172a,48:312e81,72:7c3aed,100:06b6d4&height=225&section=header&text=TruongTX&fontSize=62&fontColor=E0F2FE&animation=twinkling&fontAlignY=34&desc=Full-Stack%20Engineer%20%7C%20Backend-Heavy%20Builder%20%7C%20Galaxy%20Tech%20Mode&descAlignY=56&descSize=16"
-    alt="TruongTX galaxy neon header"
+    src="https://capsule-render.vercel.app/api?type=waving&color=0:1e1e2e,30:181825,60:89b4fa,85:89dceb,100:f9e2af&height=225&section=header&text=TruongTX&fontSize=62&fontColor=cdd6f4&animation=twinkling&fontAlignY=34&desc=Full-Stack%20Engineer%20%7C%20Backend-Heavy%20Builder%20%7C%20Cozy%20Doraemon%20Universe&descAlignY=56&descSize=16"
+    alt="TruongTX Doraemon Cozy Header"
   />
 
   <h1>TruongTX | Full-Stack Engineer | Backend-Heavy Builder</h1>
 
   <img
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=23&duration=2600&pause=700&color=00E5FF&center=true&vCenter=true&width=900&lines=Java+Spring+Boot+for+scale;Next.js+and+React+for+speed;System+Design+%7C+APIs+%7C+Performance;Building+SkillVerse+and+learning-tech+systems"
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=23&duration=2600&pause=700&color=89b4fa&center=true&vCenter=true&width=900&lines=Java+Spring+Boot+for+scale;Next.js+and+React+for+speed;System+Design+%7C+APIs+%7C+Performance;Building+SkillVerse+and+learning-tech+systems"
     alt="Typing SVG with TruongTX engineering focus"
   />
 
   <p>
-    <img src="https://img.shields.io/badge/Focus-Backend%20Systems-00E5FF?style=for-the-badge&logo=apachekafka&logoColor=0D1117" alt="Backend Systems badge" />
-    <img src="https://img.shields.io/badge/Core-Java%20Spring%20Boot-7C3AED?style=for-the-badge&logo=springboot&logoColor=white" alt="Java Spring Boot badge" />
-    <img src="https://img.shields.io/badge/UI-Next.js%20%7C%20React-FF2BD6?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js React badge" />
-    <img src="https://img.shields.io/badge/Data-PostgreSQL%20%7C%20Redis-22C55E?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL Redis badge" />
+    <img src="https://img.shields.io/badge/Focus-Backend%20Systems-89b4fa?style=for-the-badge&logo=apachekafka&logoColor=0D1117" alt="Backend Systems badge" />
+    <img src="https://img.shields.io/badge/Core-Java%20Spring%20Boot-a6e3a1?style=for-the-badge&logo=springboot&logoColor=11111b" alt="Java Spring Boot badge" />
+    <img src="https://img.shields.io/badge/UI-Next.js%20%7C%20React-f5c2e7?style=for-the-badge&logo=nextdotjs&logoColor=11111b" alt="Next.js React badge" />
+    <img src="https://img.shields.io/badge/Data-PostgreSQL%20%7C%20Redis-f38ba8?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL Redis badge" />
   </p>
 
   <p>
     <a href="https://github.com/TruongTXK18FPT">
-      <img src="https://komarev.com/ghpvc/?username=TruongTXK18FPT&style=for-the-badge&color=7c3aed&label=PROFILE+VIEWS" alt="Profile views" />
+      <img src="https://komarev.com/ghpvc/?username=TruongTXK18FPT&style=for-the-badge&color=89b4fa&label=PROFILE+VIEWS" alt="Profile views" />
     </a>
-    <img src="https://img.shields.io/badge/Open%20To-Full--Stack%20%26%20Backend--Heavy%20Projects-06B6D4?style=for-the-badge&logo=github&logoColor=0D1117" alt="Open to projects badge" />
+    <img src="https://img.shields.io/badge/Open%20To-Full--Stack%20%26%20Backend--Heavy%20Projects-f9e2af?style=for-the-badge&logo=github&logoColor=0D1117" alt="Open to projects badge" />
   </p>
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:00E5FF,50:FF2BD6,100:7C3AED&height=3&section=header"
-    alt="Neon divider"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=3&section=header"
+    alt="Doraemon Divider"
   />
 
 </div>
+
 
 ## About Orbit
 
@@ -87,8 +88,8 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:7C3AED,50:06B6D4,100:22C55E&height=2&section=header"
-    alt="Neon divider"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    alt="Doraemon Divider"
   />
 
 </div>
@@ -97,7 +98,7 @@
 
 <div align="center">
 
-<h3>Core Languages</h3>
+<h3>✦ Core Languages ✦</h3>
 
 <p>
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
@@ -107,7 +108,7 @@
   <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" alt="PowerShell" />
 </p>
 
-<h3>Backend Systems</h3>
+<h3>✦ Backend Systems ✦</h3>
 
 <p>
   <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot" />
@@ -117,7 +118,7 @@
   <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.io" />
 </p>
 
-<h3>Frontend Experience</h3>
+<h3>✦ Frontend Experience ✦</h3>
 
 <p>
   <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
@@ -128,7 +129,7 @@
   <img src="https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router" />
 </p>
 
-<h3>Data, Cloud & Quality</h3>
+<h3>✦ Data, Cloud & Quality ✦</h3>
 
 <p>
   <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
@@ -154,8 +155,8 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:22C55E,50:06B6D4,100:FF2BD6&height=2&section=header"
-    alt="Neon divider"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    alt="Doraemon Divider"
   />
 
 </div>
@@ -169,14 +170,14 @@
     <td width="50%" align="center">
       <img
         width="100%"
-        src="https://github-readme-stats.shion.dev/api?username=TruongTXK18FPT&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=0D1117&title_color=00E5FF&text_color=E2E8F0&icon_color=FF2BD6"
+        src="https://github-readme-stats.shion.dev/api?username=TruongTXK18FPT&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=1e1e2e&title_color=89b4fa&text_color=cdd6f4&icon_color=f9e2af"
         alt="TruongTXK18FPT GitHub stats"
       />
     </td>
     <td width="50%" align="center">
       <img
         width="100%"
-        src="https://streak-stats.demolab.com?user=TruongTXK18FPT&theme=tokyonight-duo&hide_border=true&background=0D1117&ring=00E5FF&fire=FF2BD6&currStreakLabel=00E5FF"
+        src="https://streak-stats.demolab.com?user=TruongTXK18FPT&theme=tokyonight-duo&hide_border=true&background=1e1e2e&ring=89b4fa&fire=f38ba8&currStreakLabel=f9e2af"
         alt="TruongTXK18FPT GitHub streak"
       />
     </td>
@@ -185,7 +186,7 @@
     <td width="50%" align="center">
       <img
         width="100%"
-        src="https://github-readme-stats.shion.dev/api/top-langs/?username=TruongTXK18FPT&layout=compact&langs_count=8&hide_border=true&bg_color=0D1117&title_color=00E5FF&text_color=E2E8F0"
+        src="https://github-readme-stats.shion.dev/api/top-langs/?username=TruongTXK18FPT&layout=compact&langs_count=8&hide_border=true&bg_color=1e1e2e&title_color=89b4fa&text_color=cdd6f4"
         alt="TruongTXK18FPT top languages"
       />
     </td>
@@ -201,7 +202,7 @@
 
 <img
   width="100%"
-  src="https://github-readme-activity-graph.vercel.app/graph?username=TruongTXK18FPT&bg_color=0D1117&color=E2E8F0&line=00E5FF&point=FF2BD6&area=true&hide_border=true&custom_title=Contribution%20Signal%20Map"
+  src="https://github-readme-activity-graph.vercel.app/graph?username=TruongTXK18FPT&bg_color=1e1e2e&color=cdd6f4&line=89b4fa&point=f9e2af&area=true&hide_border=true&custom_title=Contribution%20Signal%20Map"
   alt="TruongTXK18FPT contribution activity graph"
 />
 
@@ -217,8 +218,8 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:00E5FF,50:7C3AED,100:FF2BD6&height=2&section=header"
-    alt="Neon divider"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    alt="Doraemon Divider"
   />
 
 </div>
@@ -332,8 +333,8 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:FF2BD6,50:7C3AED,100:00E5FF&height=2&section=header"
-    alt="Neon divider"
+    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    alt="Doraemon Divider"
   />
 
 </div>
@@ -355,7 +356,7 @@
   />
 </picture>
 
-## Connect
+## ✦ Connect with me ✦
 
 <div align="center">
 
@@ -376,14 +377,14 @@
   <br />
 
   <img
-    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=3000&pause=900&color=E0F2FE&center=true&vCenter=true&width=850&lines=Thanks+for+visiting+my+profile;Keep+building.+Keep+learning.+Keep+scaling.;See+you+somewhere+in+the+code+universe."
+    src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=3000&pause=900&color=89b4fa&center=true&vCenter=true&width=850&lines=Thanks+for+visiting+my+profile;Keep+building.+Keep+learning.+Keep+scaling.;See+you+somewhere+in+the+code+universe."
     alt="Footer typing SVG"
   />
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=waving&color=0:020617,25:1e1b4b,50:4c1d95,75:7c3aed,100:06b6d4&height=155&section=footer&animation=twinkling"
-    alt="Galaxy neon footer"
+    src="https://capsule-render.vercel.app/api?type=waving&color=0:1e1e2e,30:181825,60:89b4fa,85:89dceb,100:f9e2af&height=155&section=footer&animation=twinkling"
+    alt="Doraemon Cozy Footer"
   />
 
 </div>
