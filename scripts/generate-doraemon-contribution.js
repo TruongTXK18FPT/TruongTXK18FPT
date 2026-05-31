@@ -5,40 +5,38 @@ const https = require('https');
 // Paths
 const doremonPath = path.join(__dirname, '../assets/doremon.png');
 const dorayakiPath = path.join(__dirname, '../assets/dorayaki.png');
+const fatdoremonPath = path.join(__dirname, '../assets/fatdoremon.png');
 
 // Read and Base64 encode the sprite sheets
 const doremonBase64 = fs.readFileSync(doremonPath).toString('base64');
 const dorayakiBase64 = fs.readFileSync(dorayakiPath).toString('base64');
+const fatdoremonBase64 = fs.readFileSync(fatdoremonPath).toString('base64');
 
-// Fallback Mock Contribution Data for last 3 years
-function generateMockContributions(year) {
-  console.log(`Generating mock contribution calendar for ${year}...`);
+// Fallback Mock Contribution Data for the rolling year
+function generateMockContributions() {
+  console.log("Generating mock contribution calendar as fallback...");
   const weeks = [];
-  const startDate = new Date(`${year}-01-01`);
-  const endDate = new Date(`${year}-12-31`);
+  const now = new Date();
+  const startDate = new Date(now.getTime() - 364 * 24 * 60 * 60 * 1000); // 52 weeks ago
   
-  // Align start to Sunday
+  // Align to Sunday
   const startDay = startDate.getDay();
   startDate.setDate(startDate.getDate() - startDay);
 
   let currentDate = new Date(startDate);
-  // 53 weeks to cover the whole year
   for (let w = 0; w < 53; w++) {
     const contributionDays = [];
     for (let d = 0; d < 7; d++) {
       let count = 0;
       let level = 0;
       
-      const currYear = currentDate.getFullYear();
-      if (currYear === year) {
-        const rand = Math.random();
-        if (rand > 0.70) {
-          count = Math.floor(Math.random() * 8) + 1;
-          if (count < 3) level = 1;
-          else if (count < 5) level = 2;
-          else if (count < 8) level = 3;
-          else level = 4;
-        }
+      const rand = Math.random();
+      if (rand > 0.65) {
+        count = Math.floor(Math.random() * 8) + 1;
+        if (count < 3) level = 1;
+        else if (count < 5) level = 2;
+        else if (count < 8) level = 3;
+        else level = 4;
       }
       
       contributionDays.push({
@@ -51,65 +49,28 @@ function generateMockContributions(year) {
     }
     weeks.push({ contributionDays });
   }
-  
-  // Calculate mock total contributions
+
   let total = 0;
   weeks.forEach(w => w.contributionDays.forEach(d => {
-    if (new Date(d.date).getFullYear() === year) {
-      total += d.contributionCount;
-    }
+    total += d.contributionCount;
   }));
 
   return { weeks, total };
 }
 
-// Fetch 3 years of contribution data in a single GraphQL query
-function fetchAllContributions(owner, token, currentYear) {
+// Fetch unified contribution data from GitHub GraphQL API
+function fetchContributions(owner, token) {
   return new Promise((resolve) => {
-    const y0 = currentYear;
-    const y1 = currentYear - 1;
-    const y2 = currentYear - 2;
-
     if (!token) {
-      console.warn("No GITHUB_TOKEN found. Using mock data for all years.");
-      return resolve({
-        [y0]: generateMockContributions(y0),
-        [y1]: generateMockContributions(y1),
-        [y2]: generateMockContributions(y2)
-      });
+      console.warn("No GITHUB_TOKEN found. Using mock data.");
+      return resolve(generateMockContributions());
     }
 
     const query = JSON.stringify({
       query: `
         query($login: String!) {
           user(login: $login) {
-            y${y0}: contributionsCollection(from: "${y0}-01-01T00:00:00Z", to: "${y0}-12-31T23:59:59Z") {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    contributionCount
-                    level
-                    weekday
-                    date
-                  }
-                }
-              }
-            }
-            y${y1}: contributionsCollection(from: "${y1}-01-01T00:00:00Z", to: "${y1}-12-31T23:59:59Z") {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    contributionCount
-                    level
-                    weekday
-                    date
-                  }
-                }
-              }
-            }
-            y${y2}: contributionsCollection(from: "${y2}-01-01T00:00:00Z", to: "${y2}-12-31T23:59:59Z") {
+            contributionsCollection {
               contributionCalendar {
                 totalContributions
                 weeks {
@@ -147,47 +108,24 @@ function fetchAllContributions(owner, token, currentYear) {
         try {
           const json = JSON.parse(data);
           if (json.errors || !json.data || !json.data.user) {
-            console.error("GraphQL API errors, falling back:", json.errors || json);
-            return resolve({
-              [y0]: generateMockContributions(y0),
-              [y1]: generateMockContributions(y1),
-              [y2]: generateMockContributions(y2)
-            });
+            console.error("GraphQL API errors or empty response, falling back to mock data:", json.errors || json);
+            return resolve(generateMockContributions());
           }
-          
-          const user = json.data.user;
+          const calendar = json.data.user.contributionsCollection.contributionCalendar;
           resolve({
-            [y0]: {
-              weeks: user[`y${y0}`].contributionCalendar.weeks,
-              total: user[`y${y0}`].contributionCalendar.totalContributions
-            },
-            [y1]: {
-              weeks: user[`y${y1}`].contributionCalendar.weeks,
-              total: user[`y${y1}`].contributionCalendar.totalContributions
-            },
-            [y2]: {
-              weeks: user[`y${y2}`].contributionCalendar.weeks,
-              total: user[`y${y2}`].contributionCalendar.totalContributions
-            }
+            weeks: calendar.weeks,
+            total: calendar.totalContributions
           });
         } catch (e) {
           console.error("Error parsing API response, falling back:", e);
-          resolve({
-            [y0]: generateMockContributions(y0),
-            [y1]: generateMockContributions(y1),
-            [y2]: generateMockContributions(y2)
-          });
+          resolve(generateMockContributions());
         }
       });
     });
 
     req.on('error', (e) => {
       console.error("HTTP request error, falling back:", e);
-      resolve({
-        [y0]: generateMockContributions(y0),
-        [y1]: generateMockContributions(y1),
-        [y2]: generateMockContributions(y2)
-      });
+      resolve(generateMockContributions());
     });
 
     req.write(query);
@@ -195,8 +133,8 @@ function fetchAllContributions(owner, token, currentYear) {
   });
 }
 
-// Generate the customized SVG for a specific year
-function generateSVG(weeks, totalCommits, year, isDark) {
+// Generate the animated SVG
+function generateSVG(weeks, totalCommits, isDark) {
   const theme = isDark ? {
     bg: '#0d1117',
     gridEmpty: '#161622',
@@ -232,17 +170,17 @@ function generateSVG(weeks, totalCommits, year, isDark) {
   // Target paths - Doraemon MUST hunt ALL commits in chronological order!
   let targets = [];
   if (activeCells.length > 0) {
-    // Sort chronologically (by date) so Doraemon traverses the calendar sequentially
+    // Sort chronologically (oldest to newest)
     targets = [...activeCells].sort((a, b) => new Date(a.date) - new Date(b.date));
   } else {
-    // Default fallback circular targets if no commits found
+    // Default fallback path if no commits
     targets = [
       { w: 5, d: 2, level: 3 }, { w: 15, d: 5, level: 4 }, { w: 25, d: 1, level: 2 },
       { w: 35, d: 4, level: 3 }, { w: 45, d: 1, level: 4 }
     ];
   }
 
-  // Calculate coordinates timeline
+  // Calculate cumulative movement timeline
   const timeline = [];
   let currentTime = 0;
   
@@ -319,9 +257,40 @@ function generateSVG(weeks, totalCommits, year, isDark) {
     });
   }
 
+  // After eating all dorayakis: Doraemon pauses, gets fat, falls down, sleeps, and wakes up!
+  const finalX = 2 + targets[targets.length - 1].w * 12 - 4;
+  const finalY = 2 + targets[targets.length - 1].d * 12 - 5;
+
+  const pauseStart = currentTime;
+
+  // Storyboard timeline additions (Total Pause: 8.5 seconds)
+  // 1. Happy Full (1.5s)
+  currentTime += 1.5;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'happy_full', eatStart: pauseStart });
+
+  // 2. Stuffed sitting (1.5s)
+  currentTime += 1.5;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fat_idle', eatStart: pauseStart });
+
+  // 3. Fall 1 (0.5s)
+  currentTime += 0.5;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fall_1', eatStart: pauseStart });
+
+  // 4. Fall 2 (0.5s)
+  currentTime += 0.5;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'fall_2', eatStart: pauseStart });
+
+  // 5. Sleep (3.0s)
+  currentTime += 3.0;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'sleep', eatStart: pauseStart });
+
+  // 6. Wake up (1.5s)
+  currentTime += 1.5;
+  timeline.push({ time: currentTime, x: finalX, y: finalY, state: 'wake_up', eatStart: pauseStart });
+
   const totalDuration = currentTime;
 
-  // Generate CSS Keyframes for Doraemon's Movement
+  // Generate CSS Keyframes for Doraemon's Position
   let doremonMoveKeyframes = `@keyframes doremon-move {\n`;
   let doremonSpriteKeyframes = `@keyframes doremon-sprite {\n`;
 
@@ -332,21 +301,46 @@ function generateSVG(weeks, totalCommits, year, isDark) {
     doremonMoveKeyframes += `  ${pct}% { transform: translate(${point.x}px, ${point.y}px); }\n`;
 
     // Sprite Selection keyframe (step-end)
-    let frameIdx = 0;
+    let frameSpec = ''; // 'normal-[idx]' or 'fat-[idx]'
+    
     if (point.state === 'walk') {
       const walkCycle = Math.floor(point.time / 0.15) % 2;
-      frameIdx = walkCycle === 0 ? 1 : 2;
+      // Cycle frames 1 and 2 from doremon.png
+      frameSpec = `normal-${walkCycle === 0 ? 1 : 2}`;
     } else if (point.state === 'eat') {
-      frameIdx = 3; // Eat
+      frameSpec = 'normal-3'; // Eat mouth open from doremon.png
     } else if (point.state === 'chew') {
       const chewCycle = Math.floor((point.time - point.eatStart) / 0.175) % 4;
-      frameIdx = 8 + chewCycle;
+      frameSpec = `normal-${8 + chewCycle}`; // Chew cycle from doremon.png
+    } else if (point.state === 'happy_full') {
+      frameSpec = 'fat-3'; // Happy Full (fatdoremon.png frame 3)
+    } else if (point.state === 'fat_idle') {
+      frameSpec = 'fat-4'; // Stuffed sitting (fatdoremon.png frame 4)
+    } else if (point.state === 'fall_1') {
+      frameSpec = 'fat-5'; // Tipping over (fatdoremon.png frame 5)
+    } else if (point.state === 'fall_2') {
+      frameSpec = 'fat-6'; // Ground (fatdoremon.png frame 6)
+    } else if (point.state === 'sleep') {
+      const sleepCycle = Math.floor((point.time - (point.eatStart + 4.0)) / 0.5) % 4;
+      // Cycle frames 7, 8, 9, 10 from fatdoremon.png
+      frameSpec = `fat-${7 + Math.max(0, Math.min(3, sleepCycle))}`;
+    } else if (point.state === 'wake_up') {
+      frameSpec = 'fat-11'; // Wake up startled (fatdoremon.png frame 11)
     } else {
-      frameIdx = 0; // Idle
+      frameSpec = 'normal-0'; // Idle
     }
+
+    // Convert frameSpec to translation inside the crop SVG
+    const isFat = frameSpec.startsWith('fat-');
+    const idx = parseInt(frameSpec.split('-')[1]);
     
-    const spriteTranslateX = -(frameIdx * 20);
-    doremonSpriteKeyframes += `  ${pct}% { transform: translate(${spriteTranslateX}px, 0); }\n`;
+    // In our combined layout:
+    // normal sprites row: y = 0, x = idx * 20
+    // fat sprites row: y = -22, x = idx * 20
+    const spriteTranslateX = -(idx * 20);
+    const spriteTranslateY = isFat ? -22 : 0;
+
+    doremonSpriteKeyframes += `  ${pct}% { transform: translate(${spriteTranslateX}px, ${spriteTranslateY}px); }\n`;
   });
   doremonMoveKeyframes += `}`;
   doremonSpriteKeyframes += `}`;
@@ -523,27 +517,45 @@ function generateSVG(weeks, totalCommits, year, isDark) {
   </style>
 
   <defs>
-    <!-- Single instances of high-res sprite sheet images to prevent redundant base64 replication -->
+    <!-- Single instances of high-res sprite sheets to prevent redundant base64 replication -->
     <image id="doremon-spritesheet" href="data:image/png;base64,${doremonBase64}" width="1024" height="835"/>
     <image id="cake-spritesheet" href="data:image/png;base64,${dorayakiBase64}" width="1254" height="1254"/>
+    <image id="fatdoremon-spritesheet" href="data:image/png;base64,${fatdoremonBase64}" width="1536" height="1024"/>
 
     <!-- Sprite definitions cropped via viewboxes referencing the single images above -->
     <!-- Doraemon Sprite frames (20x22 SVG canvas) -->
-    <!-- Row 0 -->
+    <!-- Row 0 (doremon.png) -->
     <g id="doremon-frame-0"><svg width="20" height="22" viewBox="0 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-1"><svg width="20" height="22" viewBox="256 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-2"><svg width="20" height="22" viewBox="512 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-3"><svg width="20" height="22" viewBox="768 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <!-- Row 1 -->
+    <!-- Row 1 (doremon.png) -->
     <g id="doremon-frame-4"><svg width="20" height="22" viewBox="0 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-5"><svg width="20" height="22" viewBox="256 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-6"><svg width="20" height="22" viewBox="512 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-7"><svg width="20" height="22" viewBox="768 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <!-- Row 2 -->
+    <!-- Row 2 (doremon.png) -->
     <g id="doremon-frame-8"><svg width="20" height="22" viewBox="0 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-9"><svg width="20" height="22" viewBox="256 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-10"><svg width="20" height="22" viewBox="512 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
     <g id="doremon-frame-11"><svg width="20" height="22" viewBox="768 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
+
+    <!-- Fat Doraemon Sprite frames (20x22 SVG canvas) -->
+    <!-- Row 0 (fatdoremon.png) -->
+    <g id="fatdoremon-frame-0"><svg width="20" height="22" viewBox="0 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-1"><svg width="20" height="22" viewBox="384 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-2"><svg width="20" height="22" viewBox="768 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-3"><svg width="20" height="22" viewBox="1152 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <!-- Row 1 (fatdoremon.png) -->
+    <g id="fatdoremon-frame-4"><svg width="20" height="22" viewBox="0 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-5"><svg width="20" height="22" viewBox="384 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-6"><svg width="20" height="22" viewBox="768 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-7"><svg width="20" height="22" viewBox="1152 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <!-- Row 2 (fatdoremon.png) -->
+    <g id="fatdoremon-frame-8"><svg width="20" height="22" viewBox="0 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-9"><svg width="20" height="22" viewBox="384 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-10"><svg width="20" height="22" viewBox="768 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-11"><svg width="20" height="22" viewBox="1152 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
 
     <!-- Donut Sprite frames (12x12 SVG canvas) -->
     <!-- Row 0 (Full) -->
@@ -567,8 +579,8 @@ function generateSVG(weeks, totalCommits, year, isDark) {
   <rect class="background" width="100%" height="100%" />
 
   <!-- Titles -->
-  <text class="text-title" x="30" y="32">✦ Contributions: ${year} ✦</text>
-  <text class="text-subtitle" x="30" y="47">Total contributions: ${totalCommits} commits in ${year}</text>
+  <text class="text-title" x="30" y="32">✨ Contributions ✨</text>
+  <text class="text-subtitle" x="30" y="47">Total contributions: ${totalCommits} commits in the last 365 days</text>
 
   <!-- Contribution Grid Section -->
   <g class="grid-container">
@@ -580,20 +592,39 @@ function generateSVG(weeks, totalCommits, year, isDark) {
 
     <!-- Doraemon Pixel Mascot character -->
     <g class="doremon-mascot">
-      <svg width="20" height="22" viewBox="0 0 20 22" style="overflow: hidden;">
-        <g class="doremon-sprite-sheet">
-          <g transform="translate(0, 0)"><use href="#doremon-frame-0"/></g>
-          <g transform="translate(20, 0)"><use href="#doremon-frame-1"/></g>
-          <g transform="translate(40, 0)"><use href="#doremon-frame-2"/></g>
-          <g transform="translate(60, 0)"><use href="#doremon-frame-3"/></g>
-          <g transform="translate(80, 0)"><use href="#doremon-frame-4"/></g>
-          <g transform="translate(100, 0)"><use href="#doremon-frame-5"/></g>
-          <g transform="translate(120, 0)"><use href="#doremon-frame-6"/></g>
-          <g transform="translate(140, 0)"><use href="#doremon-frame-7"/></g>
-          <g transform="translate(160, 0)"><use href="#doremon-frame-8"/></g>
-          <g transform="translate(180, 0)"><use href="#doremon-frame-9"/></g>
-          <g transform="translate(200, 0)"><use href="#doremon-frame-10"/></g>
-          <g transform="translate(220, 0)"><use href="#doremon-frame-11"/></g>
+      <svg width="20" height="44" viewBox="0 0 20 44" style="overflow: hidden;">
+        <!-- Two rows stacked: row 0 = normal doremon, row 1 = fat doremon -->
+        <g class="doremon-sprite-sheet" transform="translate(0, 0)">
+          <!-- Normal Doraemon Row (y = 0) -->
+          <g transform="translate(0, 0)">
+            <g transform="translate(0, 0)"><use href="#doremon-frame-0"/></g>
+            <g transform="translate(20, 0)"><use href="#doremon-frame-1"/></g>
+            <g transform="translate(40, 0)"><use href="#doremon-frame-2"/></g>
+            <g transform="translate(60, 0)"><use href="#doremon-frame-3"/></g>
+            <g transform="translate(80, 0)"><use href="#doremon-frame-4"/></g>
+            <g transform="translate(100, 0)"><use href="#doremon-frame-5"/></g>
+            <g transform="translate(120, 0)"><use href="#doremon-frame-6"/></g>
+            <g transform="translate(140, 0)"><use href="#doremon-frame-7"/></g>
+            <g transform="translate(160, 0)"><use href="#doremon-frame-8"/></g>
+            <g transform="translate(180, 0)"><use href="#doremon-frame-9"/></g>
+            <g transform="translate(200, 0)"><use href="#doremon-frame-10"/></g>
+            <g transform="translate(220, 0)"><use href="#doremon-frame-11"/></g>
+          </g>
+          <!-- Fat Doraemon Row (y = 22) -->
+          <g transform="translate(0, 22)">
+            <g transform="translate(0, 0)"><use href="#fatdoremon-frame-0"/></g>
+            <g transform="translate(20, 0)"><use href="#fatdoremon-frame-1"/></g>
+            <g transform="translate(40, 0)"><use href="#fatdoremon-frame-2"/></g>
+            <g transform="translate(60, 0)"><use href="#fatdoremon-frame-3"/></g>
+            <g transform="translate(80, 0)"><use href="#fatdoremon-frame-4"/></g>
+            <g transform="translate(100, 0)"><use href="#fatdoremon-frame-5"/></g>
+            <g transform="translate(120, 0)"><use href="#fatdoremon-frame-6"/></g>
+            <g transform="translate(140, 0)"><use href="#fatdoremon-frame-7"/></g>
+            <g transform="translate(160, 0)"><use href="#fatdoremon-frame-8"/></g>
+            <g transform="translate(180, 0)"><use href="#fatdoremon-frame-9"/></g>
+            <g transform="translate(200, 0)"><use href="#fatdoremon-frame-10"/></g>
+            <g transform="translate(220, 0)"><use href="#fatdoremon-frame-11"/></g>
+          </g>
         </g>
       </svg>
     </g>
@@ -603,56 +634,24 @@ function generateSVG(weeks, totalCommits, year, isDark) {
 }
 
 // Update the README.md dynamically with interactive details tags and commit counters
-function updateReadme(dataMap, currentYear) {
+function updateReadme(totalCommits) {
   const readmePath = path.join(__dirname, '../README.md');
   if (!fs.existsSync(readmePath)) return;
 
   const content = fs.readFileSync(readmePath, 'utf8');
-  
-  const y0 = currentYear;
-  const y1 = currentYear - 1;
-  const y2 = currentYear - 2;
-
-  const totalY0 = dataMap[y0].total;
-  const totalY1 = dataMap[y1].total;
-  const totalY2 = dataMap[y2].total;
-
   const repoOwner = process.env.GITHUB_REPOSITORY || "TruongTXK18FPT/TruongTXK18FPT";
   
   // Custom interactive details layout
   const newDetailsSection = `
-<details open>
-  <summary>📅 <b>Năm ${y0}</b> (${totalY0} commits - Bấm để đóng/mở)</summary>
-  <p align="center">
-    <img
-      width="100%"
-      src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-${y0}-dark.svg?v=2"
-      alt="Doraemon contribution ${y0}"
-    />
-  </p>
-</details>
+**Total Contributions: ${totalCommits}**
 
-<details>
-  <summary>📅 <b>Năm ${y1}</b> (${totalY1} commits)</summary>
-  <p align="center">
-    <img
-      width="100%"
-      src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-${y1}-dark.svg?v=2"
-      alt="Doraemon contribution ${y1}"
-    />
-  </p>
-</details>
-
-<details>
-  <summary>📅 <b>Năm ${y2}</b> (${totalY2} commits)</summary>
-  <p align="center">
-    <img
-      width="100%"
-      src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-${y2}-dark.svg?v=2"
-      alt="Doraemon contribution ${y2}"
-    />
-  </p>
-</details>
+<p align="center">
+  <img
+    width="100%"
+    src="https://raw.githubusercontent.com/${repoOwner}/output/github-doraemon-contribution-dark.svg?v=3"
+    alt="Doraemon eating dorayaki contributions animation"
+  />
+</p>
 `;
 
   // Standard string replacement between comments
@@ -664,9 +663,9 @@ function updateReadme(dataMap, currentYear) {
       newDetailsSection +
       content.substring(endIndex);
     fs.writeFileSync(readmePath, updatedContent);
-    console.log("Successfully updated README.md with interactive details tabs and commit counts!");
+    console.log("Successfully updated README.md with unified contribution layout and total commits!");
   } else {
-    console.warn("Could not find DORAEMON_CONTRIBUTION placeholders in README.md. Adding standard fallback.");
+    console.warn("Could not find DORAEMON_CONTRIBUTION placeholders in README.md.");
   }
 }
 
@@ -676,31 +675,24 @@ async function main() {
   const repo = process.env.GITHUB_REPOSITORY || "TruongTXK18FPT/TruongTXK18FPT";
   const owner = repo.split('/')[0];
 
-  const currentYear = new Date().getFullYear();
-  console.log(`Starting dynamic multi-year Doraemon contribution generator for owner: ${owner}...`);
+  console.log(`Starting unified Doraemon contribution generator for owner: ${owner}...`);
 
-  const dataMap = await fetchAllContributions(owner, token, currentYear);
+  const { weeks, total } = await fetchContributions(owner, token);
 
   const distDir = path.join(__dirname, '../dist');
   if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir, { recursive: true });
   }
 
-  // Loop through each year, generate light & dark SVGs
-  const years = [currentYear, currentYear - 1, currentYear - 2];
-  for (const year of years) {
-    const { weeks, total } = dataMap[year];
-    
-    const lightSVG = generateSVG(weeks, total, year, false);
-    const darkSVG = generateSVG(weeks, total, year, true);
+  const lightSVG = generateSVG(weeks, total, false);
+  const darkSVG = generateSVG(weeks, total, true);
 
-    fs.writeFileSync(path.join(distDir, `github-doraemon-contribution-${year}.svg`), lightSVG);
-    fs.writeFileSync(path.join(distDir, `github-doraemon-contribution-${year}-dark.svg`), darkSVG);
-    console.log(`Successfully generated SVGs for year ${year} (Total contributions: ${total})`);
-  }
+  fs.writeFileSync(path.join(distDir, 'github-doraemon-contribution.svg'), lightSVG);
+  fs.writeFileSync(path.join(distDir, 'github-doraemon-contribution-dark.svg'), darkSVG);
+  console.log(`Successfully generated unified SVGs (Total contributions: ${total})`);
 
   // Update the README
-  updateReadme(dataMap, currentYear);
+  updateReadme(total);
 }
 
 main().catch(console.error);
