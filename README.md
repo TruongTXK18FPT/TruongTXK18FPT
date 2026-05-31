@@ -344,7 +344,7 @@
 <p align="center">
   <img
     width="100%"
-    src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-dark.svg?v=1"
+    src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-doraemon-contribution-dark.svg?v=2"
     alt="Doraemon contribution animation"
   />
 </p>
