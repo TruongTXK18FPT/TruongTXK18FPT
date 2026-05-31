@@ -540,6 +540,9 @@ function generateSVG(weeks, totalCommits, isDark) {
     /* Retro stars animations */
     ${starCSS}
     
+    svg {
+      overflow: hidden;
+    }
     image {
       image-rendering: pixelated;
       image-rendering: crisp-edges;
@@ -555,54 +558,54 @@ function generateSVG(weeks, totalCommits, isDark) {
     <!-- Sprite definitions cropped via viewboxes referencing the single images above -->
     <!-- Doraemon Sprite frames (20x22 SVG canvas) -->
     <!-- Row 0 (doremon.png) -->
-    <g id="doremon-frame-0"><svg width="20" height="22" viewBox="0 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-1"><svg width="20" height="22" viewBox="256 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-2"><svg width="20" height="22" viewBox="512 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-3"><svg width="20" height="22" viewBox="768 0 256 278"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-0"><svg width="20" height="22" viewBox="0 0 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-1"><svg width="20" height="22" viewBox="256 0 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-2"><svg width="20" height="22" viewBox="512 0 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-3"><svg width="20" height="22" viewBox="768 0 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
     <!-- Row 1 (doremon.png) -->
-    <g id="doremon-frame-4"><svg width="20" height="22" viewBox="0 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-5"><svg width="20" height="22" viewBox="256 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-6"><svg width="20" height="22" viewBox="512 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-7"><svg width="20" height="22" viewBox="768 278 256 278"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-4"><svg width="20" height="22" viewBox="0 278 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-5"><svg width="20" height="22" viewBox="256 278 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-6"><svg width="20" height="22" viewBox="512 278 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-7"><svg width="20" height="22" viewBox="768 278 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
     <!-- Row 2 (doremon.png) -->
-    <g id="doremon-frame-8"><svg width="20" height="22" viewBox="0 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-9"><svg width="20" height="22" viewBox="256 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-10"><svg width="20" height="22" viewBox="512 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
-    <g id="doremon-frame-11"><svg width="20" height="22" viewBox="768 556 256 278"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-8"><svg width="20" height="22" viewBox="0 556 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-9"><svg width="20" height="22" viewBox="256 556 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-10"><svg width="20" height="22" viewBox="512 556 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
+    <g id="doremon-frame-11"><svg width="20" height="22" viewBox="768 556 256 278" overflow="hidden"><use href="#doremon-spritesheet"/></svg></g>
 
     <!-- Fat Doraemon Sprite frames (20x22 SVG canvas) -->
     <!-- Row 0 (fatdoremon.png) -->
-    <g id="fatdoremon-frame-0"><svg width="20" height="22" viewBox="0 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-1"><svg width="20" height="22" viewBox="384 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-2"><svg width="20" height="22" viewBox="768 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-3"><svg width="20" height="22" viewBox="1152 0 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-0"><svg width="20" height="22" viewBox="0 0 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-1"><svg width="20" height="22" viewBox="384 0 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-2"><svg width="20" height="22" viewBox="768 0 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-3"><svg width="20" height="22" viewBox="1152 0 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
     <!-- Row 1 (fatdoremon.png) -->
-    <g id="fatdoremon-frame-4"><svg width="20" height="22" viewBox="0 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-5"><svg width="20" height="22" viewBox="384 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-6"><svg width="20" height="22" viewBox="768 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-7"><svg width="20" height="22" viewBox="1152 341.33 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-4"><svg width="20" height="22" viewBox="0 341.33 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-5"><svg width="20" height="22" viewBox="384 341.33 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-6"><svg width="20" height="22" viewBox="768 341.33 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-7"><svg width="20" height="22" viewBox="1152 341.33 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
     <!-- Row 2 (fatdoremon.png) -->
-    <g id="fatdoremon-frame-8"><svg width="20" height="22" viewBox="0 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-9"><svg width="20" height="22" viewBox="384 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-10"><svg width="20" height="22" viewBox="768 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
-    <g id="fatdoremon-frame-11"><svg width="20" height="22" viewBox="1152 682.66 384 341.33"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-8"><svg width="20" height="22" viewBox="0 682.66 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-9"><svg width="20" height="22" viewBox="384 682.66 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-10"><svg width="20" height="22" viewBox="768 682.66 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
+    <g id="fatdoremon-frame-11"><svg width="20" height="22" viewBox="1152 682.66 384 341.33" overflow="hidden"><use href="#fatdoremon-spritesheet"/></svg></g>
 
     <!-- Donut Sprite frames (12x12 SVG canvas) -->
     <!-- Row 0 (Full) -->
-    <g id="donut-frame-0"><svg width="12" height="12" viewBox="0 0 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-1"><svg width="12" height="12" viewBox="256 0 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-2"><svg width="12" height="12" viewBox="512 0 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-3"><svg width="12" height="12" viewBox="768 0 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-0"><svg width="12" height="12" viewBox="0 0 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-1"><svg width="12" height="12" viewBox="256 0 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-2"><svg width="12" height="12" viewBox="512 0 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-3"><svg width="12" height="12" viewBox="768 0 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
     <!-- Row 2 (Bites) -->
-    <g id="donut-frame-8"><svg width="12" height="12" viewBox="0 512 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-9"><svg width="12" height="12" viewBox="256 512 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-10"><svg width="12" height="12" viewBox="512 512 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-11"><svg width="12" height="12" viewBox="768 512 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-8"><svg width="12" height="12" viewBox="0 512 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-9"><svg width="12" height="12" viewBox="256 512 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-10"><svg width="12" height="12" viewBox="512 512 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-11"><svg width="12" height="12" viewBox="768 512 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
     <!-- Row 3 (Crumbs) -->
-    <g id="donut-frame-12"><svg width="12" height="12" viewBox="0 768 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-13"><svg width="12" height="12" viewBox="256 768 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-14"><svg width="12" height="12" viewBox="512 768 256 256"><use href="#cake-spritesheet"/></svg></g>
-    <g id="donut-frame-15"><svg width="12" height="12" viewBox="768 768 256 256"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-12"><svg width="12" height="12" viewBox="0 768 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-13"><svg width="12" height="12" viewBox="256 768 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-14"><svg width="12" height="12" viewBox="512 768 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
+    <g id="donut-frame-15"><svg width="12" height="12" viewBox="768 768 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
   </defs>
 
   <!-- Background -->
@@ -622,7 +625,7 @@ function generateSVG(weeks, totalCommits, isDark) {
 
     <!-- Doraemon Pixel Mascot character -->
     <g class="doremon-mascot">
-      <svg width="20" height="22" viewBox="0 0 20 22" style="overflow: hidden;">
+      <svg width="20" height="22" viewBox="0 0 20 22" style="overflow: hidden;" overflow="hidden">
         <!-- Two rows stacked: row 0 = normal doremon, row 1 = fat doremon -->
         <g class="doremon-sprite-sheet" transform="translate(0, 0)">
           <!-- Normal Doraemon Row (y = 0) -->
@@ -673,8 +676,6 @@ function updateReadme(totalCommits) {
   
   // Custom interactive details layout
   const newDetailsSection = `
-**Total Contributions: ${totalCommits}**
-
 <p align="center">
   <img
     width="100%"

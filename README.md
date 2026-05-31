@@ -342,8 +342,6 @@
 ## ✨ Contributions ✨
 
 <!-- DORAEMON_CONTRIBUTION_START -->
-**Total Contributions: 639**
-
 <p align="center">
   <img
     width="100%"
