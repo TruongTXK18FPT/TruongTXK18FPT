@@ -39,36 +39,43 @@
 
 <table>
   <tr>
-    <td width="50%" valign="top">
+    <td width="35%" valign="top">
       <strong>Signal</strong>
       <br />
       Backend-heavy full-stack engineer building APIs, learning platforms, and production-ready web systems.
     </td>
-    <td width="50%" valign="top">
+    <td width="35%" valign="top">
       <strong>Current stack</strong>
       <br />
       Java Spring Boot, Next.js, React, PostgreSQL, Redis, Docker, and cloud-ready deployment flows.
     </td>
+    <td width="30%" rowspan="3" align="center" valign="middle">
+      <img
+        src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcTdjdjljYjZ6Zm43YWRpcXlqYTVzajV6YnZmcm1kN2lyaHJuYTM0aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Sv2vkRPU03IdAvA6R6/giphy.gif"
+        alt="Doraemon Mascot"
+        width="100%"
+      />
+    </td>
   </tr>
   <tr>
-    <td width="50%" valign="top">
+    <td width="35%" valign="top">
       <strong>Experience</strong>
       <br />
       Former Frontend Developer (Vue.js) at <strong>FPT Software</strong>, now expanding deeper into backend architecture.
     </td>
-    <td width="50%" valign="top">
+    <td width="35%" valign="top">
       <strong>Education</strong>
       <br />
       Software Engineering student at <strong>FPT University</strong>, focused on system design and performance.
     </td>
   </tr>
   <tr>
-    <td width="50%" valign="top">
+    <td width="35%" valign="top">
       <strong>Ask me about</strong>
       <br />
       Vue.js, Spring Boot, Next.js, ReactJS, REST APIs, database design, and clean service boundaries.
     </td>
-    <td width="50%" valign="top">
+    <td width="35%" valign="top">
       <strong>Build philosophy</strong>
       <br />
       Code like a craftsman, scale like an architect, and keep the user experience fast enough to feel invisible.
