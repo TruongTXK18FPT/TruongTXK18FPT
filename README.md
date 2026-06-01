@@ -99,7 +99,7 @@
 </div>
 
 <div align="center">
-  <img src="assets/TechConstellation.png" alt="Tech Constellation" width="100%" />
+  <img src="assets/TechConstellation.png" alt="Tech Constellation" width="43%" />
 </div>
 
 <br />
@@ -169,7 +169,7 @@
 </div>
 
 <div align="center">
-  <img src="assets/LiveGitHubSignals.png" alt="Live GitHub Signals" width="100%" />
+  <img src="assets/LiveGitHubSignals.png" alt="Live GitHub Signals" width="54%" />
 </div>
 
 <br />
@@ -235,13 +235,16 @@
 </div>
 
 <div align="center">
-  <img src="assets/FeatureProject.png" alt="Featured Project: SkillVerse" width="100%" />
+  <img src="assets/FeatureProject.png" alt="Featured Project: SkillVerse" width="48%" />
 </div>
 
 <br />
 <table>
   <tr>
-    <td width="100%" align="center">
+    <td width="40%" align="center" valign="middle">
+      <img src="assets/Skillverse.png" alt="SkillVerse Showcase" width="100%" />
+    </td>
+    <td width="60%" valign="top" align="center">
       <h3>SkillVerse | Learning Universe Platform</h3>
       <p>
         A full-stack learning platform built around structured skill development, course exploration,
@@ -266,7 +269,11 @@
   </tr>
 </table>
 
-## Project Galaxy
+<div align="center">
+  <img src="assets/ProjectGalaxy.png" alt="Project Galaxy" width="48%" />
+</div>
+
+<br />
 
 <table>
   <tr>
@@ -362,7 +369,11 @@
 </p>
 <!-- DORAEMON_CONTRIBUTION_END -->
 
-## ✦ Connect with me ✦
+<div align="center">
+  <img src="assets/ConnectWithMe.png" alt="Connect with me" width="43%" />
+</div>
+
+<br />
 
 <div align="center">
 
@@ -389,7 +400,7 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=waving&color=0:1e1e2e,30:181825,60:89b4fa,85:89dceb,100:f9e2af&height=155&section=footer&animation=twinkling"
+    src="assets/Footer.png"
     alt="Doraemon Cozy Footer"
   />
 
