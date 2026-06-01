@@ -494,66 +494,24 @@ function generateSVG(weeks, totalCommits, isDark) {
 
   return `<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 180" width="100%" height="100%">
-  <style>
-    .background {
-      fill: ${theme.bg};
-      rx: 16px;
-    }
-    .text-title {
-      font-family: 'JetBrains Mono', monospace, 'Courier New', Courier;
-      font-weight: 700;
-      font-size: 16px;
-      fill: ${theme.titleColor};
-    }
-    .text-subtitle {
-      font-family: 'JetBrains Mono', monospace, sans-serif;
-      font-weight: 500;
-      font-size: 11px;
-      fill: ${theme.subTextColor};
-    }
-    .grid-container {
-      transform: translate(30px, 60px);
-    }
-    
-    /* Doraemon Movement and Sprite Animations */
-    ${doremonMoveKeyframes}
-    ${doremonSpriteKeyframes}
-    
-    .doremon-mascot {
-      animation: doremon-move ${totalDuration}s linear infinite;
-    }
-    .doremon-sprite-sheet {
-      animation: doremon-sprite ${totalDuration}s step-end infinite;
-    }
-    
-    /* Target Donuts eating animations */
-    ${targetDonutCSS}
-    
-    /* General Spinning donut animation */
-    @keyframes donut-spin {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(-12px, 0); }
-      50% { transform: translate(-24px, 0); }
-      75% { transform: translate(-36px, 0); }
-    }
-    
-    /* Retro stars animations */
-    ${starCSS}
-    
-    svg {
-      overflow: hidden;
-    }
-    image {
-      image-rendering: pixelated;
-      image-rendering: crisp-edges;
-    }
-  </style>
-
   <defs>
     <!-- Single instances of high-res sprite sheets to prevent redundant base64 replication -->
     <image id="doremon-spritesheet" href="data:image/png;base64,${doremonBase64}" width="1024" height="835"/>
     <image id="cake-spritesheet" href="data:image/png;base64,${dorayakiBase64}" width="1024" height="1024"/>
     <image id="fatdoremon-spritesheet" href="data:image/png;base64,${fatdoremonBase64}" width="1536" height="1024"/>
+
+    <!-- Gradient for beautiful header title -->
+    <linearGradient id="title-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      ${isDark ? `
+      <stop offset="0%" stop-color="#89b4fa" />
+      <stop offset="50%" stop-color="#cba6f7" />
+      <stop offset="100%" stop-color="#f9e2af" />
+      ` : `
+      <stop offset="0%" stop-color="#0366d6" />
+      <stop offset="50%" stop-color="#6f42c1" />
+      <stop offset="100%" stop-color="#d73a49" />
+      `}
+    </linearGradient>
 
     <!-- Sprite definitions cropped via viewboxes referencing the single images above -->
     <!-- Doraemon Sprite frames (20x22 SVG canvas) -->
@@ -608,12 +566,101 @@ function generateSVG(weeks, totalCommits, isDark) {
     <g id="donut-frame-15"><svg width="12" height="12" viewBox="768 768 256 256" overflow="hidden"><use href="#cake-spritesheet"/></svg></g>
   </defs>
 
+  <style>
+    .background {
+      fill: ${theme.bg};
+      rx: 16px;
+    }
+    .text-title {
+      font-family: 'JetBrains Mono', monospace, 'Courier New', Courier;
+      font-weight: 800;
+      font-size: 18px;
+      fill: url(#title-grad);
+      filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));
+      animation: pulse-glow 3s ease-in-out infinite alternate;
+    }
+    .text-subtitle {
+      font-family: 'JetBrains Mono', monospace, sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      fill: ${theme.subTextColor};
+    }
+    .grid-container {
+      transform: translate(30px, 60px);
+    }
+    
+    /* Title Glow Animation */
+    @keyframes pulse-glow {
+      0% { filter: drop-shadow(0 0 1px ${isDark ? 'rgba(137, 180, 250, 0.2)' : 'rgba(3, 102, 214, 0.2)'}); }
+      100% { filter: drop-shadow(0 0 8px ${isDark ? 'rgba(203, 166, 247, 0.6)' : 'rgba(111, 66, 193, 0.6)'}); }
+    }
+
+    /* Doraemon Movement and Sprite Animations */
+    ${doremonMoveKeyframes}
+    ${doremonSpriteKeyframes}
+    
+    .doremon-mascot {
+      animation: doremon-move ${totalDuration}s linear infinite;
+    }
+    .doremon-sprite-sheet {
+      animation: doremon-sprite ${totalDuration}s step-end infinite;
+    }
+    
+    /* Target Donuts eating animations */
+    ${targetDonutCSS}
+    
+    /* General Spinning donut animation */
+    @keyframes donut-spin {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(-12px, 0); }
+      50% { transform: translate(-24px, 0); }
+      75% { transform: translate(-36px, 0); }
+    }
+    
+    /* Retro stars animations */
+    ${starCSS}
+    @keyframes star-twinkle-1 {
+      0%, 100% { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.3) rotate(90deg); }
+    }
+    @keyframes star-twinkle-2 {
+      0%, 100% { opacity: 1; transform: scale(1.2) rotate(45deg); }
+      50% { opacity: 0.3; transform: scale(0.7) rotate(135deg); }
+    }
+    .twinkle-star-1 {
+      animation: star-twinkle-1 3s infinite ease-in-out;
+      transform-origin: center;
+    }
+    .twinkle-star-2 {
+      animation: star-twinkle-2 2.5s infinite ease-in-out;
+      transform-origin: center;
+    }
+    
+    svg {
+      overflow: hidden;
+    }
+    image {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>
+
   <!-- Background -->
   <rect class="background" width="100%" height="100%" />
 
+  <!-- Twinkling Sparkles / Retro Stars in Title Area -->
+  <!-- Star 1 -->
+  <g class="twinkle-star-1" transform="translate(195, 26)">
+    <path d="M 0,-5 L 1,-1 L 5,0 L 1,1 L 0,5 L -1,1 L -5,0 L -1,-1 Z" fill="#f9e2af" />
+  </g>
+  <!-- Star 2 -->
+  <g class="twinkle-star-2" transform="translate(25, 24)">
+    <path d="M 0,-4 L 1,-1 L 4,0 L 1,1 L 0,4 L -1,1 L -4,0 L -1,-1 Z" fill="#a6e3a1" />
+  </g>
+
   <!-- Titles -->
-  <text class="text-title" x="30" y="32">✨ Contributions ✨</text>
-  <text class="text-subtitle" x="30" y="47">Total contributions: ${totalCommits} commits in the last 365 days</text>
+  <text class="text-title" x="40" y="32">✨ Contributions ✨</text>
+  <text class="text-subtitle" x="40" y="47">Total contributions: ${totalCommits} commits in the last 365 days</text>
 
   <!-- Contribution Grid Section -->
   <g class="grid-container">

@@ -30,7 +30,7 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=3&section=header"
+    src="assets/AnimatedDivider.svg"
     alt="Doraemon Divider"
   />
 
@@ -92,7 +92,7 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    src="assets/AnimatedDivider.svg"
     alt="Doraemon Divider"
   />
 
@@ -162,7 +162,7 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    src="assets/AnimatedDivider.svg"
     alt="Doraemon Divider"
   />
 
@@ -228,7 +228,7 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    src="assets/AnimatedDivider.svg"
     alt="Doraemon Divider"
   />
 
@@ -353,7 +353,7 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=rect&color=0:89b4fa,50:f9e2af,100:f38ba8&height=2&section=header"
+    src="assets/AnimatedDivider.svg"
     alt="Doraemon Divider"
   />
 
