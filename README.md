@@ -99,7 +99,7 @@
 </div>
 
 <div align="center">
-  <img src="assets/TechConstellation.png" alt="Tech Constellation" width="43%" />
+  <img src="assets/TechConstellation.png" alt="Tech Constellation" width="100%" />
 </div>
 
 <br />
@@ -169,7 +169,7 @@
 </div>
 
 <div align="center">
-  <img src="assets/LiveGitHubSignals.png" alt="Live GitHub Signals" width="54%" />
+  <img src="assets/LiveGitHubSignals.png" alt="Live GitHub Signals" width="100%" />
 </div>
 
 <br />
@@ -235,7 +235,7 @@
 </div>
 
 <div align="center">
-  <img src="assets/FeatureProject.png" alt="Featured Project: SkillVerse" width="48%" />
+  <img src="assets/FeatureProject.png" alt="Featured Project: SkillVerse" width="100%" />
 </div>
 
 <br />
@@ -270,7 +270,7 @@
 </table>
 
 <div align="center">
-  <img src="assets/ProjectGalaxy.png" alt="Project Galaxy" width="48%" />
+  <img src="assets/ProjectGalaxy.png" alt="Project Galaxy" width="100%" />
 </div>
 
 <br />
@@ -370,7 +370,7 @@
 <!-- DORAEMON_CONTRIBUTION_END -->
 
 <div align="center">
-  <img src="assets/ConnectWithMe.png" alt="Connect with me" width="43%" />
+  <img src="assets/ConnectWithMe.png" alt="Connect with me" width="100%" />
 </div>
 
 <br />
