@@ -370,7 +370,7 @@
 <!-- DORAEMON_CONTRIBUTION_END -->
 
 <div align="center">
-  <img src="assets/ConnectWithMe.png" alt="Connect with me" width="100%" />
+  <img src="assets/ConnectWithMe.svg" alt="Connect with me" width="100%" />
 </div>
 
 <br />
