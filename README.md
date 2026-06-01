@@ -37,8 +37,11 @@
 </div>
 
 
-## About Orbit
+<div align="center">
+  <img src="assets/AboutOrbit.png" alt="About Orbit" width="100%" />
+</div>
 
+<br />
 <table>
   <tr>
     <td width="35%" valign="top">
@@ -95,8 +98,11 @@
 
 </div>
 
-## Tech Constellation
+<div align="center">
+  <img src="assets/TechConstellation.png" alt="Tech Constellation" width="100%" />
+</div>
 
+<br />
 <div align="center">
 
 <h3>✦ Core Languages ✦</h3>
@@ -162,8 +168,11 @@
 
 </div>
 
-## Live GitHub Signals
+<div align="center">
+  <img src="assets/LiveGitHubSignals.png" alt="Live GitHub Signals" width="100%" />
+</div>
 
+<br />
 <div align="center">
 
 <table>
@@ -225,8 +234,11 @@
 
 </div>
 
-## Featured Project: SkillVerse
+<div align="center">
+  <img src="assets/FeatureProject.png" alt="Featured Project: SkillVerse" width="100%" />
+</div>
 
+<br />
 <table>
   <tr>
     <td width="100%" align="center">
