@@ -2,11 +2,12 @@
 
   <img
     width="100%"
-    src="https://capsule-render.vercel.app/api?type=waving&color=0:1e1e2e,30:181825,60:89b4fa,85:89dceb,100:f9e2af&height=225&section=header&text=TruongTX&fontSize=62&fontColor=cdd6f4&animation=twinkling&fontAlignY=34&desc=Full-Stack%20Engineer%20%7C%20Backend-Heavy%20Builder%20%7C%20Cozy%20Doraemon%20Universe&descAlignY=56&descSize=16"
-    alt="TruongTX Doraemon Cozy Header"
+    src="assets/Header.png"
+    alt="TruongTX | Full-Stack Engineer | Backend-Heavy Builder | Cozy Doraemon Universe"
   />
 
-  <h1>TruongTX | Full-Stack Engineer | Backend-Heavy Builder</h1>
+  <br />
+  <br />
 
   <img
     src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=23&duration=2600&pause=700&color=89b4fa&center=true&vCenter=true&width=900&lines=Java+Spring+Boot+for+scale;Next.js+and+React+for+speed;System+Design+%7C+APIs+%7C+Performance;Building+SkillVerse+and+learning-tech+systems"
