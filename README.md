@@ -235,39 +235,45 @@
 </div>
 
 <div align="center">
-  <img src="assets/FeatureProject.png" alt="Featured Project: SkillVerse" width="100%" />
+  <img src="assets/Skillverse.png" alt="Featured Project: SkillVerse" width="100%" />
 </div>
 
 <br />
-<table>
-  <tr>
-    <td width="40%" align="center" valign="middle">
-      <img src="assets/Skillverse.png" alt="SkillVerse Showcase" width="100%" />
-    </td>
-    <td width="60%" valign="top" align="center">
-      <h3>SkillVerse | Learning Universe Platform</h3>
-      <p>
-        A full-stack learning platform built around structured skill development, course exploration,
-        and user-centered learning flows. This is the main orbit: backend systems, API design,
-        prototype iteration, and education-product thinking in one project.
-      </p>
-      <p>
-        <img src="https://img.shields.io/badge/Universe-Learning%20Platform-7C3AED?style=for-the-badge&logo=bookstack&logoColor=white" alt="Learning platform badge" />
-        <img src="https://img.shields.io/badge/Backend-Spring%20Boot-00E5FF?style=for-the-badge&logo=springboot&logoColor=0D1117" alt="SkillVerse backend badge" />
-        <img src="https://img.shields.io/badge/API-Production--Ready-FF2BD6?style=for-the-badge&logo=fastapi&logoColor=white" alt="SkillVerse API badge" />
-        <img src="https://img.shields.io/badge/Prototype-Experience%20Flow-22C55E?style=for-the-badge&logo=figma&logoColor=0D1117" alt="SkillVerse prototype badge" />
-      </p>
-      <p>
-        <a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
-          <img src="https://img.shields.io/badge/Backend%20Repo-181717?style=for-the-badge&logo=github&logoColor=white" alt="SkillVerse backend repository" />
-        </a>
-        <a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
-          <img src="https://img.shields.io/badge/Prototype%20Repo-7C3AED?style=for-the-badge&logo=github&logoColor=white" alt="SkillVerse prototype repository" />
-        </a>
-      </p>
-    </td>
-  </tr>
-</table>
+
+<div align="center">
+
+> 🌌 **The Main Orbit**: A full-stack learning platform built around structured skill development, course exploration, and user-centered learning flows. This brings backend systems, API design, prototype iteration, and education-product thinking into one cohesive galaxy.
+
+<br />
+
+### ✦ Core Constellation ✦
+
+| Engineering & Architecture | Interface & Experience | Scale & Performance |
+| :---: | :---: | :---: |
+| `Java Spring Boot` | `Next.js & React` | `PostgreSQL & Redis` |
+| `JWT Auth & APIs` | `Figma Prototype` | `Docker Containerization` |
+
+<br />
+
+#### ✦ Tech Stack & Experience Badges ✦
+
+<p>
+  <img src="https://img.shields.io/badge/Universe-Learning%20Platform-7C3AED?style=for-the-badge&logo=bookstack&logoColor=white" alt="Learning platform badge" />
+  <img src="https://img.shields.io/badge/Backend-Spring%20Boot-00E5FF?style=for-the-badge&logo=springboot&logoColor=0D1117" alt="SkillVerse backend badge" />
+  <img src="https://img.shields.io/badge/API-Production--Ready-FF2BD6?style=for-the-badge&logo=fastapi&logoColor=white" alt="SkillVerse API badge" />
+  <img src="https://img.shields.io/badge/Prototype-Experience%20Flow-22C55E?style=for-the-badge&logo=figma&logoColor=0D1117" alt="SkillVerse prototype badge" />
+</p>
+
+#### ✦ Open Repositories ✦
+
+<a href="https://github.com/TruongTXK18FPT/SkillVerse_BackEnd">
+  <img src="https://img.shields.io/badge/Backend%20Engine-181717?style=for-the-badge&logo=github&logoColor=white" alt="SkillVerse backend repository" />
+</a>
+<a href="https://github.com/TruongTXK18FPT/skillverse-prototype">
+  <img src="https://img.shields.io/badge/Prototype%20Experience-7C3AED?style=for-the-badge&logo=github&logoColor=white" alt="SkillVerse prototype repository" />
+</a>
+
+</div>
 
 <div align="center">
   <img src="assets/ProjectGalaxy.png" alt="Project Galaxy" width="100%" />
