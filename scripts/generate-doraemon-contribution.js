@@ -1,3 +1,13 @@
+/**
+ * @file generate-doraemon-contribution.js
+ * @description Fetches GitHub contribution data for the user and generates pixel-art 
+ * animated SVGs themed around Doraemon eating dorayakis. Can be run locally or in GitHub Actions.
+ * 
+ * Usage:
+ * - In GitHub Actions: Automatically run by workflow, GITHUB_TOKEN is supplied via env.
+ * - Locally: node scripts/generate-doraemon-contribution.js [GITHUB_TOKEN]
+ */
+
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
@@ -749,7 +759,7 @@ function updateReadme(totalCommits) {
 
 // Main Execution
 async function main() {
-  const token = process.env.GITHUB_TOKEN;
+  const token = process.env.GITHUB_TOKEN || process.argv[2];
   const repo = process.env.GITHUB_REPOSITORY || "TruongTXK18FPT/TruongTXK18FPT";
   const owner = repo.split('/')[0];
 
