@@ -68,31 +68,90 @@ function generateMockContributions() {
   return { weeks, total };
 }
 
-// Fetch unified contribution data from GitHub GraphQL API
-function fetchContributions(owner, token) {
+// Helper: Get user's account creation year via GraphQL
+function fetchUserCreationYear(owner, token) {
   return new Promise((resolve) => {
-    if (!token) {
-      console.warn("No GITHUB_TOKEN found. Using mock data.");
-      return resolve(generateMockContributions());
+    const query = JSON.stringify({
+      query: `
+        query($login: String!) {
+          user(login: $login) {
+            createdAt
+          }
+        }
+      `,
+      variables: { login: owner }
+    });
+
+    const options = {
+      hostname: 'api.github.com',
+      path: '/graphql',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'User-Agent': 'Doraemon-Contribution-Journey-Generator',
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(query)
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(data);
+          if (json.data && json.data.user && json.data.user.createdAt) {
+            resolve(new Date(json.data.user.createdAt).getFullYear());
+          } else {
+            console.warn("Failed to get createdAt, falling back to 2023");
+            resolve(2023);
+          }
+        } catch (e) {
+          console.warn("Error parsing createdAt response, falling back to 2023:", e);
+          resolve(2023);
+        }
+      });
+    });
+
+    req.on('error', (e) => {
+      console.warn("Request error getting createdAt, falling back to 2023:", e);
+      resolve(2023);
+    });
+
+    req.write(query);
+    req.end();
+  });
+}
+
+// Helper: Get contributions for all years since creation using aliases in a single query
+function fetchContributionsForAllYears(owner, token, startYear, currentYear) {
+  return new Promise((resolve) => {
+    let fields = '';
+    for (let yr = startYear; yr <= currentYear; yr++) {
+      const fromStr = `${yr}-01-01T00:00:00Z`;
+      const toStr = `${yr}-12-31T23:59:59Z`;
+      fields += `
+        contrib_${yr}: contributionsCollection(from: "${fromStr}", to: "${toStr}") {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                contributionCount
+                level
+                weekday
+                date
+              }
+            }
+          }
+        }
+      `;
     }
 
     const query = JSON.stringify({
       query: `
         query($login: String!) {
           user(login: $login) {
-            contributionsCollection {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    contributionCount
-                    level
-                    weekday
-                    date
-                  }
-                }
-              }
-            }
+            ${fields}
           }
         }
       `,
@@ -118,29 +177,119 @@ function fetchContributions(owner, token) {
         try {
           const json = JSON.parse(data);
           if (json.errors || !json.data || !json.data.user) {
-            console.error("GraphQL API errors or empty response, falling back to mock data:", json.errors || json);
-            return resolve(generateMockContributions());
+            console.error("GraphQL API errors or empty response for all years:", json.errors || json);
+            return resolve(null);
           }
-          const calendar = json.data.user.contributionsCollection.contributionCalendar;
-          resolve({
-            weeks: calendar.weeks,
-            total: calendar.totalContributions
-          });
+          resolve(json.data.user);
         } catch (e) {
-          console.error("Error parsing API response, falling back:", e);
-          resolve(generateMockContributions());
+          console.error("Error parsing API response for all years:", e);
+          resolve(null);
         }
       });
     });
 
     req.on('error', (e) => {
-      console.error("HTTP request error, falling back:", e);
-      resolve(generateMockContributions());
+      console.error("HTTP request error for all years:", e);
+      resolve(null);
     });
 
     req.write(query);
     req.end();
   });
+}
+
+// Fetch unified contribution data from GitHub GraphQL API
+async function fetchContributions(owner, token) {
+  if (!token) {
+    console.warn("No GITHUB_TOKEN found. Using mock data.");
+    const mock = generateMockContributions();
+    return {
+      weeks: mock.weeks,
+      total: mock.total,
+      allWeeks: mock.weeks,
+      allTotal: mock.total
+    };
+  }
+
+  try {
+    const startYear = await fetchUserCreationYear(owner, token);
+    const currentYear = new Date().getFullYear();
+    console.log(`User created in: ${startYear}, fetching contributions from ${startYear} to ${currentYear}...`);
+
+    const allData = await fetchContributionsForAllYears(owner, token, startYear, currentYear);
+    if (!allData) {
+      console.warn("Failed to fetch all years data, falling back to mock data.");
+      const mock = generateMockContributions();
+      return {
+        weeks: mock.weeks,
+        total: mock.total,
+        allWeeks: mock.weeks,
+        allTotal: mock.total
+      };
+    }
+
+    // Process and merge the calendars
+    let allWeeks = [];
+    let allTotal = 0;
+    
+    // Sort keys to maintain chronological order
+    const keys = Object.keys(allData).filter(k => k.startsWith('contrib_')).sort();
+    
+    keys.forEach(key => {
+      const collection = allData[key];
+      if (collection && collection.contributionCalendar) {
+        allTotal += collection.contributionCalendar.totalContributions;
+        if (collection.contributionCalendar.weeks) {
+          allWeeks.push(...collection.contributionCalendar.weeks);
+        }
+      }
+    });
+
+    // Deduplicate contributionDays inside allWeeks by date to avoid boundary overlap issues
+    const seenDates = new Set();
+    const cleanedWeeks = [];
+    allWeeks.forEach(w => {
+      if (w.contributionDays) {
+        const cleanedDays = w.contributionDays.filter(d => {
+          if (seenDates.has(d.date)) {
+            return false;
+          }
+          seenDates.add(d.date);
+          return true;
+        });
+        if (cleanedDays.length > 0) {
+          cleanedWeeks.push({ contributionDays: cleanedDays });
+        }
+      }
+    });
+
+    // Now extract the standard 365 days (53 weeks) for the Doraemon grid SVG
+    const recentWeeks = cleanedWeeks.slice(-53);
+    let recentTotal = 0;
+    recentWeeks.forEach(w => {
+      w.contributionDays.forEach(d => {
+        recentTotal += d.contributionCount;
+      });
+    });
+
+    console.log(`Successfully fetched contributions: total = ${allTotal} (inception to date), recent total = ${recentTotal} (last 53 weeks)`);
+
+    return {
+      weeks: recentWeeks,
+      total: recentTotal,
+      allWeeks: cleanedWeeks,
+      allTotal: allTotal
+    };
+  } catch (e) {
+    console.error("Error in fetchContributions, falling back to mock data:", e);
+    const mock = generateMockContributions();
+    return {
+      weeks: mock.weeks,
+      total: mock.total,
+      allWeeks: mock.weeks,
+      allTotal: mock.total
+    };
+  }
 }
 
 // Generate the animated SVG
@@ -776,6 +925,18 @@ function calculateStreakStats(weeks) {
     totalContributions += d.contributionCount;
   });
 
+  // Find first day with contribution > 0
+  let firstContributionDate = "";
+  for (let i = 0; i < pastAndTodayDays.length; i++) {
+    if (pastAndTodayDays[i].contributionCount > 0) {
+      firstContributionDate = pastAndTodayDays[i].date;
+      break;
+    }
+  }
+  if (!firstContributionDate && pastAndTodayDays.length > 0) {
+    firstContributionDate = pastAndTodayDays[0].date;
+  }
+
   // Calculate current streak
   let currentStreak = 0;
   let currentStreakStart = "";
@@ -848,14 +1009,17 @@ function calculateStreakStats(weeks) {
     currentStreakEnd,
     longestStreak,
     longestStreakStart,
-    longestStreakEnd
+    longestStreakEnd,
+    firstContributionDate
   };
 }
 
 // Generate the animated Streak SVG
 function generateStreakSVG(stats, isDark) {
   const theme = isDark ? {
-    bg: '#1e1e2e',
+    bg: '#0f0f16',
+    bgGradEnd: '#151522',
+    cardBg: '#1e1e2e',
     textMain: '#cdd6f4',
     textLabel: '#89b4fa',
     textDate: '#a6adc8',
@@ -863,9 +1027,11 @@ function generateStreakSVG(stats, isDark) {
     flameColor: '#f38ba8',
     trophyColor: '#f9e2af',
     border: '#313244',
-    glowOpacity: 0.1
+    glowOpacity: 0.15
   } : {
     bg: '#ffffff',
+    bgGradEnd: '#f8f9fa',
+    cardBg: '#f8f9fa',
     textMain: '#24292e',
     textLabel: '#0366d6',
     textDate: '#586069',
@@ -873,39 +1039,114 @@ function generateStreakSVG(stats, isDark) {
     flameColor: '#d73a49',
     trophyColor: '#d18000',
     border: '#e1e4e6',
-    glowOpacity: 0.05
+    glowOpacity: 0.08
   };
 
   const formattedCurrentRange = formatRange(stats.currentStreakStart, stats.currentStreakEnd);
   const formattedLongestRange = formatRange(stats.longestStreakStart, stats.longestStreakEnd);
 
+  // Compute first contribution range start
+  let totalRangeStr = "Lifetime";
+  if (stats.firstContributionDate) {
+    const parts = stats.firstContributionDate.split('-');
+    if (parts.length === 3) {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const m = months[parseInt(parts[1], 10) - 1];
+      totalRangeStr = `Since ${m} ${parts[0]}`;
+    }
+  }
+
+  const isActive = stats.currentStreak > 0;
+
   return `<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195">
   <defs>
-    <radialGradient id="current-glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="${theme.flameColor}" stop-opacity="${theme.glowOpacity}" />
-      <stop offset="100%" stop-color="${theme.bg}" stop-opacity="0" />
-    </radialGradient>
+    <!-- Blur filter for ambient glow -->
+    <filter id="blur-effect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20" />
+    </filter>
+    
+    <!-- Linear Gradient for overall card background -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${theme.bg}" />
+      <stop offset="100%" stop-color="${theme.bgGradEnd}" />
+    </linearGradient>
+
+    <!-- Card Border gradients (glowing cosmic borders) -->
+    <linearGradient id="card-border-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${theme.chartColor}" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="${theme.chartColor}" stop-opacity="0.05" />
+    </linearGradient>
+    <linearGradient id="card-border-2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${theme.flameColor}" stop-opacity="${isActive ? 0.6 : 0.2}" />
+      <stop offset="100%" stop-color="${theme.flameColor}" stop-opacity="0.05" />
+    </linearGradient>
+    <linearGradient id="card-border-3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${theme.trophyColor}" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="${theme.trophyColor}" stop-opacity="0.05" />
+    </linearGradient>
+
+    <!-- Gold gradient for longest streak trophy -->
+    <linearGradient id="gold-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f9e2af" />
+      <stop offset="50%" stop-color="#fab387" />
+      <stop offset="100%" stop-color="#f9e2af" />
+    </linearGradient>
+
+    <!-- Flame gradients for active state -->
+    <linearGradient id="fire-outer-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#f38ba8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#fab387" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="fire-mid-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#fab387" />
+      <stop offset="100%" stop-color="#f9e2af" />
+    </linearGradient>
+    <linearGradient id="fire-inner-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#f9e2af" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+
+    <!-- Flame gradients for inactive/dormant state -->
+    <linearGradient id="fire-outer-cool" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#313244" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#89b4fa" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="fire-mid-cool" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#45475a" />
+      <stop offset="100%" stop-color="#89b4fa" />
+    </linearGradient>
+    <linearGradient id="fire-inner-cool" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#585b70" />
+      <stop offset="100%" stop-color="#b4befe" />
+    </linearGradient>
   </defs>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Outfit:wght@600;800&amp;display=swap');
     
     .background {
-      fill: ${theme.bg};
-      rx: 10px;
+      fill: url(#bg-grad);
+      rx: 16px;
     }
+    
+    /* Modular card styling */
+    .module-card {
+      fill: ${theme.cardBg};
+      fill-opacity: ${isDark ? 0.35 : 0.75};
+      rx: 12px;
+    }
+
     .stat-label {
       font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-weight: 600;
-      font-size: 12px;
-      fill: ${theme.textLabel};
-      letter-spacing: 0.5px;
+      font-size: 11px;
+      letter-spacing: 0.75px;
     }
     .stat-value {
       font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-weight: 800;
-      font-size: 30px;
+      font-size: 32px;
       fill: ${theme.textMain};
     }
     .stat-date {
@@ -914,67 +1155,174 @@ function generateStreakSVG(stats, isDark) {
       font-size: 11px;
       fill: ${theme.textDate};
     }
-    .divider {
-      stroke: ${theme.border};
-      stroke-width: 1px;
-      opacity: 0.8;
+
+    /* Bar chart animations */
+    @keyframes bar-grow-1 {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.7); }
+    }
+    @keyframes bar-grow-2 {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.55); }
+    }
+    @keyframes bar-grow-3 {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.75); }
+    }
+    .bar-1 { animation: bar-grow-1 1.6s infinite ease-in-out; transform-origin: 6px 20px; }
+    .bar-2 { animation: bar-grow-2 1.8s infinite ease-in-out; transform-origin: 12px 20px; }
+    .bar-3 { animation: bar-grow-3 1.4s infinite ease-in-out; transform-origin: 18px 20px; }
+
+    /* Flame burning animations (Active) */
+    @keyframes flame-outer-burn {
+      0%, 100% { transform: scale(1) rotate(0deg) skewX(0deg); opacity: 0.9; }
+      25% { transform: scale(1.05) rotate(-1.5deg) skewX(-1.5deg); opacity: 1; }
+      50% { transform: scale(0.95) rotate(1.5deg) skewX(1.5deg); opacity: 0.85; }
+      75% { transform: scale(1.02) rotate(-0.5deg) skewX(-0.5deg); opacity: 0.95; }
+    }
+    @keyframes flame-mid-burn {
+      0%, 100% { transform: scale(1) rotate(0deg) skewX(0deg); }
+      33% { transform: scale(0.94) rotate(2deg) skewX(1deg); }
+      66% { transform: scale(1.06) rotate(-2deg) skewX(-1deg); }
+    }
+    @keyframes flame-inner-burn {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(-1deg); }
     }
     
-    @keyframes fire-glow {
-      0%, 100% { filter: drop-shadow(0 0 2px ${theme.flameColor}66); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 6px ${theme.flameColor}aa); transform: scale(1.08); }
+    .flame-outer {
+      animation: flame-outer-burn 1.5s infinite ease-in-out;
+      transform-origin: 32px 58px;
     }
-    .fire-icon {
-      animation: fire-glow 2s infinite ease-in-out;
-      transform-origin: 12px 12px;
+    .flame-mid {
+      animation: flame-mid-burn 1.2s infinite ease-in-out;
+      transform-origin: 32px 54px;
+    }
+    .flame-inner {
+      animation: flame-inner-burn 0.9s infinite ease-in-out;
+      transform-origin: 32px 50px;
+    }
+
+    /* Flame dormant animations (Inactive) */
+    @keyframes flame-outer-cool {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+      50% { transform: scale(0.97) rotate(0.5deg); opacity: 0.5; }
+    }
+    @keyframes flame-mid-cool {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+      50% { transform: scale(0.95) rotate(-0.5deg); opacity: 0.7; }
+    }
+    @keyframes flame-inner-cool {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    
+    .flame-outer-dormant {
+      animation: flame-outer-cool 3s infinite ease-in-out;
+      transform-origin: 32px 58px;
+    }
+    .flame-mid-dormant {
+      animation: flame-mid-cool 2.5s infinite ease-in-out;
+      transform-origin: 32px 54px;
+    }
+    .flame-inner-dormant {
+      animation: flame-inner-cool 2s infinite ease-in-out;
+      transform-origin: 32px 50px;
+    }
+
+    /* Sparks floating */
+    @keyframes float-spark-1 {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(-8px, -30px) scale(0.3); opacity: 0; }
+    }
+    @keyframes float-spark-2 {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(6px, -25px) scale(0.3); opacity: 0; }
+    }
+    @keyframes float-spark-3 {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(-3px, -35px) scale(0.3); opacity: 0; }
+    }
+    .spark-1 { animation: float-spark-1 1.8s infinite ease-out; transform-origin: 28px 45px; }
+    .spark-2 { animation: float-spark-2 2.2s infinite ease-out; transform-origin: 36px 40px; animation-delay: 0.4s; }
+    .spark-3 { animation: float-spark-3 1.5s infinite ease-out; transform-origin: 30px 35px; animation-delay: 0.8s; }
+
+    /* Trophy floating */
+    @keyframes trophy-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-2px) rotate(1.5deg); }
+    }
+    .trophy-icon {
+      animation: trophy-float 3s infinite ease-in-out;
+      transform-origin: 16px 16px;
     }
   </style>
 
   <!-- Background -->
-  <rect class="background" width="100%" height="100%" />
+  <rect class="background" width="100%" height="100%" stroke="${theme.border}" stroke-width="1.5" />
 
-  <!-- Radial Glow behind Current Streak -->
-  <rect x="166" y="10" width="163" height="175" fill="url(#current-glow)" rx="8" />
-
-  <!-- Divider Lines -->
-  <line class="divider" x1="165" y1="30" x2="165" y2="165" />
-  <line class="divider" x1="330" y1="30" x2="330" y2="165" />
+  <!-- Ambient Glow Backdrops -->
+  <circle cx="87.5" cy="97.5" r="50" fill="${theme.chartColor}" fill-opacity="${theme.glowOpacity}" filter="url(#blur-effect)" />
+  <circle cx="247.5" cy="97.5" r="50" fill="${theme.flameColor}" fill-opacity="${isActive ? theme.glowOpacity * 1.5 : theme.glowOpacity}" filter="url(#blur-effect)" />
+  <circle cx="407.5" cy="97.5" r="50" fill="${theme.trophyColor}" fill-opacity="${theme.glowOpacity}" filter="url(#blur-effect)" />
 
   <!-- COLUMN 1: Total Contributions -->
-  <g transform="translate(70.5, 35)" stroke="${theme.chartColor}">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="18" y1="20" x2="18" y2="10" />
-      <line x1="12" y1="20" x2="12" y2="4" />
-      <line x1="6" y1="20" x2="6" y2="14" />
+  <rect class="module-card" x="15" y="15" width="145" height="165" stroke="url(#card-border-1)" stroke-width="1.5" />
+  <!-- Center: 87.5. Icon top-left: 87.5 - 16 = 71.5. Y center: 40. Y top-left: 40 - 16 = 24 -->
+  <g transform="translate(71.5, 24)">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="${theme.chartColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line class="bar-1" x1="6" y1="20" x2="6" y2="12" />
+      <line class="bar-2" x1="12" y1="20" x2="12" y2="4" />
+      <line class="bar-3" x1="18" y1="20" x2="18" y2="10" />
     </svg>
   </g>
-  <text x="82.5" y="82" class="stat-label" text-anchor="middle">TOTAL CONTRIBUTIONS</text>
-  <text x="82.5" y="125" class="stat-value" text-anchor="middle">${stats.totalContributions}</text>
-  <text x="82.5" y="155" class="stat-date" text-anchor="middle">Last 365 Days</text>
+  <text x="87.5" y="82" class="stat-label" fill="${theme.chartColor}" text-anchor="middle">TOTAL CONTRIBUTIONS</text>
+  <text x="87.5" y="125" class="stat-value" text-anchor="middle">${stats.totalContributions}</text>
+  <text x="87.5" y="155" class="stat-date" text-anchor="middle">${totalRangeStr}</text>
 
   <!-- COLUMN 2: Current Streak -->
-  <g class="fire-icon" transform="translate(235.5, 35)" stroke="${theme.flameColor}">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+  <rect class="module-card" x="175" y="15" width="145" height="165" stroke="url(#card-border-2)" stroke-width="1.5" />
+  <!-- Center: 247.5. Icon top-left: 247.5 - 18 = 229.5. Y center: 40. Y top-left: 40 - 18 = 22 -->
+  <g transform="translate(229.5, 22)">
+    <svg viewBox="0 0 64 64" width="36" height="36">
+      <!-- Outer Flame -->
+      <path class="${isActive ? 'flame-outer' : 'flame-outer-dormant'}" fill="url(#${isActive ? 'fire-outer-grad' : 'fire-outer-cool'})" d="M32 4 C32 4 48 20 48 38 C48 50 39 58 32 58 C25 58 16 50 16 38 C16 20 32 4 32 4 Z" />
+      
+      <!-- Middle Flame -->
+      <path class="${isActive ? 'flame-mid' : 'flame-mid-dormant'}" fill="url(#${isActive ? 'fire-mid-grad' : 'fire-mid-cool'})" d="M32 16 C32 16 43 28 43 40 C43 48 37 54 32 54 C27 54 21 48 21 40 C21 28 32 16 32 16 Z" />
+      
+      <!-- Inner Flame -->
+      <path class="${isActive ? 'flame-inner' : 'flame-inner-dormant'}" fill="url(#${isActive ? 'fire-inner-grad' : 'fire-inner-cool'})" d="M32 28 C32 28 37 36 37 42 C37 46 34 50 32 50 C30 50 27 46 27 42 C27 36 32 28 32 28 Z" />
+      
+      <!-- Sparks (active only) -->
+      ${isActive ? `
+      <circle class="spark spark-1" cx="28" cy="45" r="1.5" fill="#f9e2af" />
+      <circle class="spark spark-2" cx="36" cy="40" r="1.2" fill="#fab387" />
+      <circle class="spark spark-3" cx="30" cy="35" r="1" fill="#ffffff" />
+      ` : ''}
     </svg>
   </g>
-  <text x="247.5" y="82" class="stat-label" text-anchor="middle">CURRENT STREAK</text>
-  <text x="247.5" y="125" class="stat-value" text-anchor="middle" fill="${theme.flameColor}">${stats.currentStreak}</text>
+  <text x="247.5" y="82" class="stat-label" fill="${theme.flameColor}" text-anchor="middle">CURRENT STREAK</text>
+  <text x="247.5" y="125" class="stat-value" fill="${isActive ? theme.flameColor : theme.textMain}" text-anchor="middle">${stats.currentStreak}</text>
   <text x="247.5" y="155" class="stat-date" text-anchor="middle">${formattedCurrentRange}</text>
 
   <!-- COLUMN 3: Longest Streak -->
-  <g transform="translate(400.5, 35)" stroke="${theme.trophyColor}">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-      <path d="M4 22h16" />
-      <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34" />
-      <path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z" />
-    </svg>
+  <rect class="module-card" x="335" y="15" width="145" height="165" stroke="url(#card-border-3)" stroke-width="1.5" />
+  <!-- Center: 407.5. Icon top-left: 407.5 - 16 = 391.5. Y center: 40. Y top-left: 40 - 16 = 24 -->
+  <g transform="translate(391.5, 24)">
+    <g class="trophy-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#gold-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+        <path d="M4 22h16" />
+        <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34" />
+        <path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z" fill="url(#gold-grad)" fill-opacity="0.1" />
+      </svg>
+    </g>
   </g>
-  <text x="412.5" y="82" class="stat-label" text-anchor="middle">LONGEST STREAK</text>
-  <text x="412.5" y="125" class="stat-value" text-anchor="middle">${stats.longestStreak}</text>
-  <text x="412.5" y="155" class="stat-date" text-anchor="middle">${formattedLongestRange}</text>
+  <text x="407.5" y="82" class="stat-label" fill="${theme.trophyColor}" text-anchor="middle">LONGEST STREAK</text>
+  <text x="407.5" y="125" class="stat-value" text-anchor="middle">${stats.longestStreak}</text>
+  <text x="407.5" y="155" class="stat-date" text-anchor="middle">${formattedLongestRange}</text>
 </svg>
 `;
 }
@@ -1021,7 +1369,7 @@ async function main() {
 
   console.log(`Starting unified Doraemon contribution generator for owner: ${owner}...`);
 
-  const { weeks, total } = await fetchContributions(owner, token);
+  const { weeks, total, allWeeks, allTotal } = await fetchContributions(owner, token);
 
   const distDir = path.join(__dirname, '../dist');
   if (!fs.existsSync(distDir)) {
@@ -1037,7 +1385,7 @@ async function main() {
   console.log(`Successfully generated Doraemon contribution SVGs`);
 
   // 2. Calculate and generate GitHub streak stats cards
-  const streakStats = calculateStreakStats(weeks);
+  const streakStats = calculateStreakStats(allWeeks);
   console.log("Calculated Streak Stats:", streakStats);
 
   const streakLightSVG = generateStreakSVG(streakStats, false);
