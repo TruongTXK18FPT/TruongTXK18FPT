@@ -889,7 +889,7 @@ function generateStreakSVG(stats, isDark) {
   </defs>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Outfit:wght@600;800&amp;display=swap');
     
     .background {
       fill: ${theme.bg};
