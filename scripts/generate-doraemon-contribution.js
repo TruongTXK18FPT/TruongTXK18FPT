@@ -723,6 +723,262 @@ function generateSVG(weeks, totalCommits, isDark) {
 `;
 }
 
+// Helper to parse date strings (YYYY-MM-DD) consistently in local timezone
+function parseLocalDate(dateStr) {
+  const parts = dateStr.split('-');
+  return new Date(parts[0], parts[1] - 1, parts[2]);
+}
+
+// Helper to format date ranges cleanly
+function formatRange(startStr, endStr) {
+  if (!startStr || !endStr) return "No contributions";
+  const startParts = startStr.split('-');
+  const endParts = endStr.split('-');
+  if (startParts.length !== 3 || endParts.length !== 3) return `${startStr} - ${endStr}`;
+
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const startMonth = months[parseInt(startParts[1], 10) - 1];
+  const startDay = parseInt(startParts[2], 10);
+  const startYear = startParts[0];
+
+  const endMonth = months[parseInt(endParts[1], 10) - 1];
+  const endDay = parseInt(endParts[2], 10);
+  const endYear = endParts[0];
+
+  if (startYear !== endYear) {
+    return `${startMonth} ${startDay}, ${startYear} - ${endMonth} ${endDay}, ${endYear}`;
+  }
+  return `${startMonth} ${startDay} - ${endMonth} ${endDay}`;
+}
+
+// Calculate GitHub contribution streak statistics
+function calculateStreakStats(weeks) {
+  const days = [];
+  weeks.forEach(w => {
+    if (w.contributionDays) {
+      days.push(...w.contributionDays);
+    }
+  });
+
+  // Sort chronologically (oldest to newest)
+  days.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Filter out future days
+  const now = new Date();
+  const utc7Time = new Date(now.getTime() + (7 * 60 * 60 * 1000));
+  const todayStr = utc7Time.toISOString().split('T')[0];
+
+  const pastAndTodayDays = days.filter(d => d.date <= todayStr);
+
+  // Total contributions
+  let totalContributions = 0;
+  pastAndTodayDays.forEach(d => {
+    totalContributions += d.contributionCount;
+  });
+
+  // Calculate current streak
+  let currentStreak = 0;
+  let currentStreakStart = "";
+  let currentStreakEnd = "";
+
+  const todayDateObj = parseLocalDate(todayStr);
+  let startIdx = -1;
+
+  // Walk backwards to find the latest day with contributions
+  for (let i = pastAndTodayDays.length - 1; i >= 0; i--) {
+    const d = pastAndTodayDays[i];
+    if (d.contributionCount > 0) {
+      const dDateObj = parseLocalDate(d.date);
+      const diffTime = todayDateObj - dDateObj;
+      const diffDays = diffTime / (1000 * 60 * 60 * 24);
+      
+      // If the last active day is today (diff <= 0.5) or yesterday (diff <= 1.5), streak is active
+      if (diffDays <= 1.5) {
+        startIdx = i;
+      }
+      break;
+    }
+  }
+
+  if (startIdx !== -1) {
+    currentStreakEnd = pastAndTodayDays[startIdx].date;
+    let i = startIdx;
+    while (i >= 0 && pastAndTodayDays[i].contributionCount > 0) {
+      currentStreak++;
+      currentStreakStart = pastAndTodayDays[i].date;
+      i--;
+    }
+  }
+
+  // Calculate longest streak
+  let longestStreak = 0;
+  let longestStreakStart = "";
+  let longestStreakEnd = "";
+
+  let tempStreak = 0;
+  let tempStart = "";
+
+  for (let i = 0; i < pastAndTodayDays.length; i++) {
+    const d = pastAndTodayDays[i];
+    if (d.contributionCount > 0) {
+      if (tempStreak === 0) {
+        tempStart = d.date;
+      }
+      tempStreak++;
+    } else {
+      if (tempStreak > longestStreak) {
+        longestStreak = tempStreak;
+        longestStreakStart = tempStart;
+        longestStreakEnd = pastAndTodayDays[i - 1].date;
+      }
+      tempStreak = 0;
+    }
+  }
+
+  if (tempStreak > longestStreak) {
+    longestStreak = tempStreak;
+    longestStreakStart = tempStart;
+    longestStreakEnd = pastAndTodayDays[pastAndTodayDays.length - 1].date;
+  }
+
+  return {
+    totalContributions,
+    currentStreak,
+    currentStreakStart,
+    currentStreakEnd,
+    longestStreak,
+    longestStreakStart,
+    longestStreakEnd
+  };
+}
+
+// Generate the animated Streak SVG
+function generateStreakSVG(stats, isDark) {
+  const theme = isDark ? {
+    bg: '#1e1e2e',
+    textMain: '#cdd6f4',
+    textLabel: '#89b4fa',
+    textDate: '#a6adc8',
+    chartColor: '#89b4fa',
+    flameColor: '#f38ba8',
+    trophyColor: '#f9e2af',
+    border: '#313244',
+    glowOpacity: 0.1
+  } : {
+    bg: '#ffffff',
+    textMain: '#24292e',
+    textLabel: '#0366d6',
+    textDate: '#586069',
+    chartColor: '#0366d6',
+    flameColor: '#d73a49',
+    trophyColor: '#d18000',
+    border: '#e1e4e6',
+    glowOpacity: 0.05
+  };
+
+  const formattedCurrentRange = formatRange(stats.currentStreakStart, stats.currentStreakEnd);
+  const formattedLongestRange = formatRange(stats.longestStreakStart, stats.longestStreakEnd);
+
+  return `<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 195" width="495" height="195">
+  <defs>
+    <radialGradient id="current-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${theme.flameColor}" stop-opacity="${theme.glowOpacity}" />
+      <stop offset="100%" stop-color="${theme.bg}" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@600;800&display=swap');
+    
+    .background {
+      fill: ${theme.bg};
+      rx: 10px;
+    }
+    .stat-label {
+      font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      fill: ${theme.textLabel};
+      letter-spacing: 0.5px;
+    }
+    .stat-value {
+      font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      font-size: 30px;
+      fill: ${theme.textMain};
+    }
+    .stat-date {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 11px;
+      fill: ${theme.textDate};
+    }
+    .divider {
+      stroke: ${theme.border};
+      stroke-width: 1px;
+      opacity: 0.8;
+    }
+    
+    @keyframes fire-glow {
+      0%, 100% { filter: drop-shadow(0 0 2px ${theme.flameColor}66); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 6px ${theme.flameColor}aa); transform: scale(1.08); }
+    }
+    .fire-icon {
+      animation: fire-glow 2s infinite ease-in-out;
+      transform-origin: 12px 12px;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect class="background" width="100%" height="100%" />
+
+  <!-- Radial Glow behind Current Streak -->
+  <rect x="166" y="10" width="163" height="175" fill="url(#current-glow)" rx="8" />
+
+  <!-- Divider Lines -->
+  <line class="divider" x1="165" y1="30" x2="165" y2="165" />
+  <line class="divider" x1="330" y1="30" x2="330" y2="165" />
+
+  <!-- COLUMN 1: Total Contributions -->
+  <g transform="translate(70.5, 35)" stroke="${theme.chartColor}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10" />
+      <line x1="12" y1="20" x2="12" y2="4" />
+      <line x1="6" y1="20" x2="6" y2="14" />
+    </svg>
+  </g>
+  <text x="82.5" y="82" class="stat-label" text-anchor="middle">TOTAL CONTRIBUTIONS</text>
+  <text x="82.5" y="125" class="stat-value" text-anchor="middle">${stats.totalContributions}</text>
+  <text x="82.5" y="155" class="stat-date" text-anchor="middle">Last 365 Days</text>
+
+  <!-- COLUMN 2: Current Streak -->
+  <g class="fire-icon" transform="translate(235.5, 35)" stroke="${theme.flameColor}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
+    </svg>
+  </g>
+  <text x="247.5" y="82" class="stat-label" text-anchor="middle">CURRENT STREAK</text>
+  <text x="247.5" y="125" class="stat-value" text-anchor="middle" fill="${theme.flameColor}">${stats.currentStreak}</text>
+  <text x="247.5" y="155" class="stat-date" text-anchor="middle">${formattedCurrentRange}</text>
+
+  <!-- COLUMN 3: Longest Streak -->
+  <g transform="translate(400.5, 35)" stroke="${theme.trophyColor}">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+      <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+      <path d="M4 22h16" />
+      <path d="M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34" />
+      <path d="M12 2a6 6 0 0 1 6 6v5a6 6 0 0 1-6 6 6 6 0 0 1-6-6V8a6 6 0 0 1 6-6z" />
+    </svg>
+  </g>
+  <text x="412.5" y="82" class="stat-label" text-anchor="middle">LONGEST STREAK</text>
+  <text x="412.5" y="125" class="stat-value" text-anchor="middle">${stats.longestStreak}</text>
+  <text x="412.5" y="155" class="stat-date" text-anchor="middle">${formattedLongestRange}</text>
+</svg>
+`;
+}
+
 // Update the README.md dynamically with interactive details tags and commit counters
 function updateReadme(totalCommits) {
   const readmePath = path.join(__dirname, '../README.md');
@@ -772,12 +1028,24 @@ async function main() {
     fs.mkdirSync(distDir, { recursive: true });
   }
 
+  // 1. Generate Doraemon contribution SVGs
   const lightSVG = generateSVG(weeks, total, false);
   const darkSVG = generateSVG(weeks, total, true);
 
   fs.writeFileSync(path.join(distDir, 'github-doraemon-contribution.svg'), lightSVG);
   fs.writeFileSync(path.join(distDir, 'github-doraemon-contribution-dark.svg'), darkSVG);
-  console.log(`Successfully generated unified SVGs (Total contributions: ${total})`);
+  console.log(`Successfully generated Doraemon contribution SVGs`);
+
+  // 2. Calculate and generate GitHub streak stats cards
+  const streakStats = calculateStreakStats(weeks);
+  console.log("Calculated Streak Stats:", streakStats);
+
+  const streakLightSVG = generateStreakSVG(streakStats, false);
+  const streakDarkSVG = generateStreakSVG(streakStats, true);
+
+  fs.writeFileSync(path.join(distDir, 'github-streak-stats.svg'), streakLightSVG);
+  fs.writeFileSync(path.join(distDir, 'github-streak-stats-dark.svg'), streakDarkSVG);
+  console.log(`Successfully generated streak stats SVGs`);
 
   // Update the README
   updateReadme(total);
