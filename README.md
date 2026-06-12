@@ -187,7 +187,7 @@
     <td width="50%" align="center">
       <img
         width="100%"
-        src="https://raw.githubusercontent.com/TruongTXK18FPT/TruongTXK18FPT/output/github-streak-stats-dark.svg?v=5"
+        src="https://streak-stats.demolab.com?user=TruongTXK18FPT&hide_border=true&background=00123D&ring=19D9FF&fire=FF2A8A&currStreakLabel=FFFFFF&sideLabels=CDEBFF&currStreakNum=FFFFFF&sideNums=FFFFFF&dates=8EEBFF"
         alt="TruongTXK18FPT GitHub streak"
       />
     </td>
